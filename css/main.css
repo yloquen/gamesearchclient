@@ -1,0 +1,72 @@
+html,
+body
+{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#root
+{
+    width:100%;
+    height:100%;
+    background-color: azure;
+}
+
+
+#header
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 2%;
+    font-size: 1.5rem;
+}
+
+
+#search_form_container
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aqua;
+    height:3rem;
+}
+
+
+.search_form_component
+{
+    height:2rem;
+    font-size: 1.5rem;
+    padding: 0.2rem;
+}
+
+#results_container
+{
+    width:100%;
+}
+
+#result_container
+{
+    width:65%;
+}
+
+.result_name
+{
+    display: inline-block;
+    width:55%;
+}
+
+.result_price
+{
+    display: inline-block;
+    width:20%;
+}
+
+.result_provider
+{
+    display: inline-block;
+    width:25%;
+}
