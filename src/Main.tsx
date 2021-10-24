@@ -57,7 +57,7 @@ function SearchResult(props:{result:GameData})
 {
     return (<div id="result_container">
         <div class="result_name">{props.result.name}</div>
-        <div class="result_price">{props.result.price}</div>
+        <div class="result_price">{props.result.price.toFixed(2)}</div>
         <div class="result_provider">{props.result.provider}</div>
     </div>);
 }

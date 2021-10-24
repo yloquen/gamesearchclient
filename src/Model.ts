@@ -13,6 +13,9 @@ export default class Model
     {
         this.loaded = true;
         this.searchResults = data;
+
+        this.searchResults.sort((r1:GameData, r2:GameData) => {return r1.price - r2.price});
+
         app.dispatcher.emit(C_Evt.LOADED);
     }
 
