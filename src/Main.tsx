@@ -36,7 +36,6 @@ export default class Main extends Component<any, MainState>
         if (app.model.loaded)
         {
             content = <div id="main_container">
-                <Header/>
                 <SearchForm/>
                 <SearchResults results={app.model.searchResults}/>
             </div>;
@@ -44,7 +43,6 @@ export default class Main extends Component<any, MainState>
         else
         {
             content = <div id="main_container">
-                <Header/>
                 <SearchForm/>
             </div>;
         }
@@ -55,11 +53,20 @@ export default class Main extends Component<any, MainState>
 
 function SearchResult(props:{result:GameData})
 {
-    return (<div id="result_container">
-        <div class="result_name">{props.result.name}</div>
-        <div class="result_price">{props.result.price.toFixed(2)}</div>
-        <div class="result_provider">{props.result.provider}</div>
-    </div>);
+    const result:GameData = props.result;
+
+    return (
+        <div className="result_container">
+            <img className="result_image" src={"data:image/png;base64," + result.img}/>
+            <div className="result_name">
+                <a href={result.link} target="_blank" style={{display:"inline-block", verticalAlign:"middle"}}>{result.name}</a>
+            </div>
+            <div className="result_price">
+                {result.price.toFixed(2)}
+                <div style={{height:"0.25vw"}}/>
+                <img src={"./providers/" + result.provider.toLocaleLowerCase() + ".png"} style={{height:"1.75vw"}}/>
+            </div>
+        </div>);
 }
 
 
@@ -83,8 +90,10 @@ function SearchForm(props:any)
     const ref = React.createRef();
     return (
         <div id="search_form_container">
-            <input class="search_form_component" type="text" ref={ref}/>
-            <button class="search_form_component" onClick={() => {app.controller.runQuery(ref.current.value)}}>Search</button>
+            <input className="search_form_component" type="text" ref={ref}/>
+            <button className="search_form_component" onClick={() => {app.controller.runQuery(ref.current.value)}}>
+                Search
+            </button>
         </div>
     );
 }
