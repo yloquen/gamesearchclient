@@ -64,7 +64,7 @@ function SearchResult(props:{result:GameData})
             <div className="result_price">
                 {result.price.toFixed(2)}
                 <div style={{height:"0.25vw"}}/>
-                <img src={"./providers/" + result.provider.toLocaleLowerCase() + ".png"} style={{height:"1.75vw"}}/>
+                <img className="result_provider" src={"./providers/" + result.provider.toLocaleLowerCase() + ".png"} />
             </div>
         </div>);
 }
@@ -90,8 +90,8 @@ function SearchForm(props:any)
     const ref = React.createRef();
     return (
         <div id="search_form_container">
-            <input className="search_form_component" type="text" ref={ref}/>
-            <button className="search_form_component" onClick={() => {app.controller.runQuery(ref.current.value)}}>
+            <input id="search_form_input" type="text" ref={ref}/>
+            <button id="search_form_button" onClick={() => {app.controller.runQuery(ref.current.value)}}>
                 Search
             </button>
         </div>
