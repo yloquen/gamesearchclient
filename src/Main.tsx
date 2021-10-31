@@ -57,7 +57,7 @@ function SearchResult(props:{result:GameData})
 
     return (
         <div className="result_container">
-            <img className="result_image" src={"data:image/png;base64," + result.img}/>
+            <img className="result_image" src={result.img}/>
             <div className="result_name">
                 <a href={result.link} target="_blank" style={{display:"inline-block", verticalAlign:"middle"}}>{result.name}</a>
             </div>
