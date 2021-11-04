@@ -1,4 +1,4 @@
 export default class C_Evt
 {
-    public static LOADED:string = "LOADED";
+    public static LOAD_EVENT:string = "LOAD_EVENT";
 }

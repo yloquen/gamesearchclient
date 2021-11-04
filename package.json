@@ -24,7 +24,7 @@
   },
 
   "staticFiles": {
-    "staticPath": "static"
+    "staticPath": "./static"
   }
 
 }

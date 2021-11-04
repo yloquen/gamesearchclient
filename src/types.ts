@@ -10,5 +10,6 @@ export type GameData =
 
 export type MainState =
 {
+    loading:boolean
     loaded:boolean
 }
