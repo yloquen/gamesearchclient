@@ -8,19 +8,18 @@
 
 html, body
 {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     margin: 0;
     font-family: "Rubik","sans-serif";
     font-weight: 300;
+    background-color: azure;
 }
 
 
-#root, #main_container
+#root
 {
-    width:100%;
-    height:100%;
-    background-color: azure;
+
 }
 
 
@@ -78,7 +77,7 @@ html, body
 }
 
 
-#results_container
+#results_center_container
 {
     display: flex;
     flex-direction: column;
@@ -86,6 +85,23 @@ html, body
     width:40vw;
     height:100%;
     background-color: #e0f9f9;
+}
+
+#results_left_container
+{
+    width:100%;
+}
+
+#results_right_container
+{
+    width:100%;
+}
+
+
+#results_root
+{
+    display: flex;
+    flex-direction: row;
 }
 
 
@@ -98,8 +114,14 @@ html, body
     background-color: #ffffff;
     padding: 0.75vw;
     margin-left: 1vw;
+    margin-right: 1vw;
     margin-top: 1vw;
     font-size: 1.2vw;
+}
+
+.result_container:last-child
+{
+    margin-bottom: 1vw;
 }
 
 
@@ -160,7 +182,7 @@ html, body
         font-size: 4vw;
     }
 
-    #results_container
+    #results_center_container
     {
         width:100vw;
     }

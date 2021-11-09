@@ -9,11 +9,12 @@ export default class Controller
     runQuery(searchString:string)
     {
         const req = new XMLHttpRequest();
-        req.open("GET", C_Config.SERVER_URL + "/search?q=" + searchString);
+        req.open("GET", C_Config.SERVER_URL + "/search?q=" + escape(searchString));
         req.send();
 
         app.model.loaded = false;
         app.model.loading = true;
+        app.model.setSearchResults({gameData:[], priceData:[]});
         app.dispatcher.emit(C_Evt.LOAD_EVENT);
 
         req.onreadystatechange = () =>

@@ -1,12 +1,14 @@
-import React, {useEffect} from "react";
+import * as React from "react";
+import {useEffect} from "react";
 import {Component} from 'react';
 import Controller from "./Controller";
 import {app} from "./App";
 import {GameData, MainState} from "./types";
 import C_Evt from "./const/C_Evt";
 import { gsap, Linear } from "gsap";
-
-
+import Loader from "./components/Loader";
+import Util from "./Util";
+import LeftContainer from "./components/LeftContainer";
 
 
 export default class Main extends Component<any, MainState>
@@ -40,7 +42,7 @@ export default class Main extends Component<any, MainState>
         const content =
         [
             <SearchForm/>,
-            <SearchResults results = { app.model.searchResults }/>
+            <SearchResults results = { app.model.gameData }/>
         ];
 
         if (this.state.loading)
@@ -57,12 +59,16 @@ export default class Main extends Component<any, MainState>
 }
 
 
-function SearchResult(props:{result:GameData})
+function SearchResult(props:{result:GameData, index:number})
 {
+    const ref = Util.createTweens(
+        [],
+        [{ duration:.5, alpha:0, delay:props.index * .1 }]);
+
     const result:GameData = props.result;
 
     return (
-        <div className="result_container">
+        <div ref={ref} className="result_container">
             <img className="result_image" src={result.img}/>
             <div className="result_name">
                 <a href={result.link} target="_blank" style={{display:"inline-block", verticalAlign:"middle"}}>{result.name}</a>
@@ -78,17 +84,25 @@ function SearchResult(props:{result:GameData})
 
 function SearchResults(props:any)
 {
-    const results = props.results.map((result) =>
+    const results = props.results.map((result, index) =>
     {
-        return <SearchResult result={result}/>;
+        return <SearchResult result={result} index={index} key={result.name}/>;
     });
 
     return (
-        <div id="results_container">
-            {results}
+        <div id="results_root">
+            <LeftContainer/>
+            <div id="results_center_container">
+                {results}
+            </div>
+            <div id="results_right_container"></div>
         </div>
+
     );
 }
+
+
+
 
 
 function SearchForm(props:any)
@@ -103,31 +117,5 @@ function SearchForm(props:any)
             </button>
         </div>
     );
-}
-
-
-function Loader(props:any)
-{
-    const ref = React.createRef();
-
-    useEffect(() =>
-    {
-        gsap.to(ref.current, { duration:2, ease:Linear.easeNone, rotation:360, repeat:10});
-        gsap.from(ref.current, { duration:.2, alpha:0 });
-    });
-
-    const style:React.CSSProperties =
-    {
-        width:"7vw",
-        height:"7vw",
-        position:"fixed",
-        left:"50vw",
-        top:"50vh",
-        transform:"translate(-50%, -50%)",
-        filter:"brightness(70%)",
-        opacity:0.5
-    };
-
-    return (<img ref={ref} src="./assets/loading_circle.png" style={style}/>);
 }
 
