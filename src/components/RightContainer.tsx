@@ -5,37 +5,21 @@ import Util from "../Util";
 import {CSSProperties} from "react";
 
 
-export default function LeftContainer()
+export default function RightContainer()
 {
     const style:CSSProperties =
     {
         display:"flex",
-        flexDirection:"column",
         justifyContent:"center",
         alignContent:"middle",
-        fontSize:"1vw"
+        fontSize:"1vw",
+        height:"20vw"
     };
 
     return (<div style={style} id="results_left_container">
             {app.model.loaded ? <PriceChartingList/> : undefined}
-            {app.model.loaded ? <GameVideo/> : undefined}
         </div>);
 }
-
-
-const GameVideo = (props:any) =>
-{
-    const style =
-        {
-            width:"20vw",
-            height:"14vw",
-        };
-
-    return (
-        <iframe style={style}
-            src="https://www.youtube.com/embed/tgbNymZ7vqY">
-        </iframe>)
-};
 
 
 const PriceChartingList = (props:any) =>
@@ -47,10 +31,7 @@ const PriceChartingList = (props:any) =>
         justifyContent:"center",
         backgroundColor:"#ffffff",
         marginTop:"1vw",
-        padding:"1vw",
-        height:"20vw",
-        position:"sticky",
-        top:"4vw"
+        padding:"1vw"
     };
 
     const imgStyle:CSSProperties =

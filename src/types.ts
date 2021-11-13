@@ -8,13 +8,6 @@ export type GameData =
 };
 
 
-export type PriceData =
-{
-    name:string,
-    price:string
-};
-
-
 export type MainState =
 {
     loading:boolean

@@ -4,10 +4,10 @@ import {gsap, Linear} from "gsap";
 import TweenTarget = gsap.TweenTarget;
 import Util from "../Util";
 
-export default function Loader(props:any)
+export default function LoadingCircle(props:any)
 {
     const ref = Util.createTweens(
-            [{ duration:.2, ease:Linear.easeNone, rotation:360, repeat:10 }],
+            [{ duration:2, ease:Linear.easeNone, rotation:360, repeat:10 }],
             [{ duration:.2, alpha:0 }]);
 
     const style:React.CSSProperties =

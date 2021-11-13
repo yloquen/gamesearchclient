@@ -6,9 +6,10 @@ import {app} from "./App";
 import {GameData, MainState} from "./types";
 import C_Evt from "./const/C_Evt";
 import { gsap, Linear } from "gsap";
-import Loader from "./components/Loader";
+import LoadingCircle from "./components/LoadingCircle";
 import Util from "./Util";
 import LeftContainer from "./components/LeftContainer";
+import RightContainer from "./components/RightContainer";
 
 
 export default class Main extends Component<any, MainState>
@@ -47,7 +48,7 @@ export default class Main extends Component<any, MainState>
 
         if (this.state.loading)
         {
-            content.push(<Loader/>);
+            content.push(<LoadingCircle/>);
         }
 
         return (<div id="main_container">
@@ -95,14 +96,11 @@ function SearchResults(props:any)
             <div id="results_center_container">
                 {results}
             </div>
-            <div id="results_right_container"></div>
+            <RightContainer/>
         </div>
 
     );
 }
-
-
-
 
 
 function SearchForm(props:any)

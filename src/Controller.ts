@@ -21,6 +21,8 @@ export default class Controller
         {
             if (req.readyState == 4 && req.status == 200)
             {
+                app.model.loaded = true;
+                app.model.loading = false;
                 app.model.setSearchResults(JSON.parse(req.response));
             }
         };

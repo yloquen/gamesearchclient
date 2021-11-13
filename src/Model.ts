@@ -1,4 +1,4 @@
-import {GameData, PriceData} from "./types";
+import {GameData} from "./types";
 import C_Evt from "./const/C_Evt";
 import {app} from "./App";
 
@@ -7,13 +7,12 @@ export default class Model
     public loading:boolean = false;
     public loaded:boolean = false;
     public gameData:GameData[] = [];
-    public priceData:PriceData[] = [];
+    public priceData:GameData[] = [];
+    public usdToBgn:number = 1.7;
 
 
-    setSearchResults(data:{gameData:GameData[], priceData:PriceData[]})
+    setSearchResults(data:{gameData:GameData[], priceData:GameData[]})
     {
-        this.loading = false;
-        this.loaded = true;
         this.gameData = data.gameData;
         this.priceData = data.priceData;
 
