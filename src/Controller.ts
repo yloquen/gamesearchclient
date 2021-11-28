@@ -8,6 +8,7 @@ export default class Controller
 
     runQuery(searchString:string)
     {
+        app.model.searchString = searchString;
         const req = new XMLHttpRequest();
         req.open("GET", C_Config.SERVER_URL + "/search?q=" + escape(searchString));
         req.send();

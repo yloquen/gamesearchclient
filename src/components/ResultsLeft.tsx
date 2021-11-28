@@ -1,22 +1,12 @@
 import * as React from "react";
 import {GameData} from "../types";
 import {app} from "../App";
-import Util from "../Util";
 import {CSSProperties} from "react";
 
 
-export default function LeftContainer()
+export default function ResultsLeft()
 {
-    const style:CSSProperties =
-    {
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        alignContent:"middle",
-        fontSize:"1vw"
-    };
-
-    return (<div style={style} id="results_left_container">
+    return (<div id="results_left_container" className="side_panel">
             {app.model.loaded ? <PriceChartingList/> : undefined}
             {app.model.loaded ? <GameVideo/> : undefined}
         </div>);
@@ -26,15 +16,13 @@ export default function LeftContainer()
 const GameVideo = (props:any) =>
 {
     const style =
-        {
-            width:"20vw",
-            height:"14vw",
-        };
+    {
+    };
 
     return (
         <iframe style={style}
             src="https://www.youtube.com/embed/tgbNymZ7vqY">
-        </iframe>)
+        </iframe>);
 };
 
 
@@ -48,14 +36,13 @@ const PriceChartingList = (props:any) =>
         backgroundColor:"#ffffff",
         marginTop:"1vw",
         padding:"1vw",
-        height:"20vw",
-        position:"sticky",
-        top:"4vw"
+        width:"26vw"
     };
 
     const imgStyle:CSSProperties =
     {
-        width:"60%"
+        width:"50%",
+        paddingBottom:"1vw"
     };
 
     const results = app.model.priceData.map((priceData:GameData) =>
@@ -64,7 +51,7 @@ const PriceChartingList = (props:any) =>
     });
 
     return (<div style={containerStyle} id="price_charting_container">
-        <img style={imgStyle} src="./assets/providers/pricecharting.png"/>
+        <img width="50%" style={imgStyle} src="./assets/providers/pricecharting.png"/>
         {results}
     </div>)
 };
@@ -83,22 +70,24 @@ const PriceChartingItem = (props:{priceData:GameData}) =>
 
     const nameStyle:CSSProperties =
     {
-        minWidth:"20vw",
+        width:"22vw"
     };
 
     const priceStyle:CSSProperties =
     {
-
+        width:"6vw",
+        textAlign:"right"
     };
 
-    const MAX_LENGTH = 42;
+    const MAX_LENGTH = 38;
     let name = props.priceData.name;
     if (name.length > MAX_LENGTH)
     {
         name = name.slice(0, MAX_LENGTH-3) + "...";
     }
 
-    const price = props.priceData.price ? (props.priceData.price * app.model.usdToBgn).toFixed(2) : "N.A.";
+    const price = props.priceData.price ? (props.priceData.price * app.model.usdToBgn).toFixed(2) + " лв." : "N.A.";
+
 
     return (<div className="price_charting_item" style={containerStyle}>
         <a className = "price_charting_name" style={nameStyle} href={props.priceData.link} target="_blank">{name}</a>

@@ -1,0 +1,33 @@
+#search_form_container
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5bbee;
+    padding: 0.5em;
+}
+
+
+#search_form_input
+{
+    width:22%;
+    font-family: "Rubik","sans-serif";
+    margin-right: 2%;
+}
+
+
+#search_form_button
+{
+    width:10%;
+    font-family: "Rubik","sans-serif";
+}
+
+
+
+@media (orientation: portrait)
+{
+    #search_form_container
+    {
+
+    }
+}

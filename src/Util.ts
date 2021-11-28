@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useEffect} from "react";
+import {LegacyRef, useEffect} from "react";
 import {gsap, Linear} from "gsap";
 import TweenTarget = gsap.TweenTarget;
 
@@ -8,7 +8,7 @@ export default class Util
 {
 
 
-    static createTweens(toVars:any[], fromVars:any[])
+    static createTweens(toVars:any[], fromVars:any[]):LegacyRef<any>
     {
         const ref = React.createRef();
 

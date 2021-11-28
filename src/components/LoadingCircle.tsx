@@ -1,7 +1,5 @@
 import * as React from 'react'
-import {useEffect} from "react";
 import {gsap, Linear} from "gsap";
-import TweenTarget = gsap.TweenTarget;
 import Util from "../Util";
 
 export default function LoadingCircle(props:any)
@@ -18,8 +16,7 @@ export default function LoadingCircle(props:any)
             left:"50vw",
             top:"50vh",
             transform:"translate(-50%, -50%)",
-            filter:"brightness(70%)",
-            opacity:0.5
+            filter:"hue-rotate(222deg) grayscale(80%) brightness(180%)"
         };
 
     return (<img ref={ref} src="./assets/loading_circle.png" style={style}/>);
