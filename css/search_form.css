@@ -5,6 +5,7 @@
     justify-content: center;
     background-color: #f5bbee;
     padding: 0.5em;
+    font-size: 1.25rem;
 }
 
 
@@ -20,6 +21,7 @@
 {
     width:10%;
     font-family: "Rubik","sans-serif";
+    font-size: 1rem;
 }
 
 

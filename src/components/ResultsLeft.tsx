@@ -28,7 +28,7 @@ const GameVideo = (props:any) =>
 
 const PriceChartingList = (props:any) =>
 {
-    const containerStyle:CSSProperties =
+/*    const containerStyle:CSSProperties =
     {
         display:"flex",
         flexDirection:"column",
@@ -37,7 +37,7 @@ const PriceChartingList = (props:any) =>
         marginTop:"1vw",
         padding:"1vw",
         width:"26vw"
-    };
+    };*/
 
     const imgStyle:CSSProperties =
     {
@@ -50,7 +50,7 @@ const PriceChartingList = (props:any) =>
         return <PriceChartingItem priceData={priceData}/>
     });
 
-    return (<div style={containerStyle} id="price_charting_container">
+    return (<div id="results_side_container">
         <img width="50%" style={imgStyle} src="./assets/providers/pricecharting.png"/>
         {results}
     </div>)

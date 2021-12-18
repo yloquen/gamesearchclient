@@ -9,19 +9,19 @@ import ReactHtmlParser from 'react-html-parser';
 export default function ResultsRight()
 {
     return (<div id="results_right_container" className="side_panel">
-            {app.model.loaded ? <PriceChartingList/> : undefined}
+            {app.model.loaded ? <WikipediaData/> : undefined}
         </div>);
 }
 
 
-const PriceChartingList = (props:any) =>
+const WikipediaData = (props:any) =>
 {
-    const containerStyle:CSSProperties =
-    {
-        display:"flex",
-        flexDirection:"column",
-        backgroundColor:"#ffffff"
-    };
+/*    const containerStyle:CSSProperties =
+        {
+            marginTop:"1vw",
+            padding:"1vw",
+            width:"26vw"
+        };*/
 
     const imgStyle:CSSProperties =
     {
@@ -30,11 +30,16 @@ const PriceChartingList = (props:any) =>
 
     const infoBoxStyle =
     {
-
+        display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        backgroundColor:"#ffffff",
+        marginTop:"1vw",
+        padding:"1vw",
+        width:"26vw"
     };
 
-
-    return (<div style={containerStyle} id="price_charting_container">
+    return (<div id="results_side_container">
         <img style={imgStyle} src="./assets/providers/wikipedia.png"/>
         <div style={infoBoxStyle}>{ ReactHtmlParser(app.model.wikiData) }</div>
         <div style={infoBoxStyle}>{ ReactHtmlParser(app.model.wikiReviews) }</div>
