@@ -10,8 +10,8 @@ html
     width:calc(100vw - (100vw - 100%));
     font-family:"Rubik","sans-serif";
     font-weight:300;
-    font-size:1.25em;
-    background-color: #cddcff;
+    font-size:20px;
+    background-color: #c0d3ff;
 }
 
 body
@@ -34,9 +34,7 @@ input[type="text"]
 {
     display: flex;
     flex-direction: column;
-    /*margin: 0 auto;*/
     width:40%;
-    margin-top:1vw;
     padding:1vw;
     height:100%;
 }
@@ -49,7 +47,7 @@ input[type="text"]
     background-color:#ffffff;
     margin-top:1vw;
     padding:1vw;
-    width:26vw;
+    width:90%;
 }
 
 #results_root
@@ -60,9 +58,11 @@ input[type="text"]
 
 .result_container
 {
-    display:flex;
-    flex-direction: row;
+    position: relative;
     background-color: #ffffff;
+    width:38vw;
+    height:8vw;
+    margin-bottom: 1vw;
 }
 
 .result_container:last-child
@@ -72,34 +72,52 @@ input[type="text"]
 
 .result_image
 {
-    height: 100%;
+    height:6vw;
+    left:1vw;
+    top:1vw;
+    position: absolute;
 }
 
 
 .result_name
 {
-    height:100%;
-    display:flex;
-    align-items:center;
+    position: absolute;
+    height:7vw;
+    left:8vw;
+    width:20vw;
+    background-color: #ffffff;
+}
+
+.result_name a
+{
+    margin: 0;
+    position: absolute;
+    top: 4vw;
+    transform: translateY(-50%);
 }
 
 
 .result_price
 {
+    position: absolute;
+    left: 29.5vw;
+    top: 4vw;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items:center;
-    font-family: "Rubik","sans-serif";
     font-weight: 600;
     color:#555;
+    transform: translateY(-50%);
 }
 
 
 .result_provider
 {
-
+    width:7vw;
+    background-color: purple;
 }
+
 
 .side_panel
 {
@@ -109,6 +127,13 @@ input[type="text"]
     align-items:center;
     width:30%;
 }
+
+
+.price_charting_item
+{
+    background-color: #f5f8ff;
+}
+
 
 @media (orientation: portrait)
 {
@@ -122,39 +147,5 @@ input[type="text"]
 @media (orientation: portrait)
 {
 
-    #search_form_input
-    {
-
-    }
-
-    #search_form_button
-    {
-
-    }
-
-    #results_center_container
-    {
-
-    }
-
-    .result_container
-    {
-
-    }
-
-    .result_name
-    {
-
-    }
-
-    .result_price
-    {
-
-    }
-
-    .result_provider
-    {
-
-    }
 
 }

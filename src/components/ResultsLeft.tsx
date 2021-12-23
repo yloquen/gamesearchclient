@@ -17,6 +17,9 @@ const GameVideo = (props:any) =>
 {
     const style =
     {
+        marginTop:"1.5vw",
+        width:"27vw",
+        height:"15.1875vw"
     };
 
     return (
@@ -28,17 +31,6 @@ const GameVideo = (props:any) =>
 
 const PriceChartingList = (props:any) =>
 {
-/*    const containerStyle:CSSProperties =
-    {
-        display:"flex",
-        flexDirection:"column",
-        justifyContent:"center",
-        backgroundColor:"#ffffff",
-        marginTop:"1vw",
-        padding:"1vw",
-        width:"26vw"
-    };*/
-
     const imgStyle:CSSProperties =
     {
         width:"50%",
@@ -59,15 +51,6 @@ const PriceChartingList = (props:any) =>
 
 const PriceChartingItem = (props:{priceData:GameData}) =>
 {
-    const containerStyle:CSSProperties =
-    {
-        display:"flex",
-        flexDirection:"row",
-        padding:"0.075vw",
-        paddingLeft:"0.2vw",
-        paddingRight:"0.2vw"
-    };
-
     const nameStyle:CSSProperties =
     {
         width:"22vw"
@@ -75,21 +58,21 @@ const PriceChartingItem = (props:{priceData:GameData}) =>
 
     const priceStyle:CSSProperties =
     {
-        width:"6vw",
-        textAlign:"right"
+        width:"8vw",
+        textAlign:"right",
     };
 
-    const MAX_LENGTH = 38;
+    const MAX_LENGTH = 60;
     let name = props.priceData.name;
     if (name.length > MAX_LENGTH)
     {
         name = name.slice(0, MAX_LENGTH-3) + "...";
     }
 
-    const price = props.priceData.price ? (props.priceData.price * app.model.usdToBgn).toFixed(2) + " лв." : "N.A.";
+    const price = props.priceData.price ? (props.priceData.price * app.model.usdToBgn).toFixed(2) + "\u00A0лв." : "N.A.";
 
 
-    return (<div className="price_charting_item" style={containerStyle}>
+    return (<div className="price_charting_item">
         <a className = "price_charting_name" style={nameStyle} href={props.priceData.link} target="_blank">{name}</a>
         <div className = "price_charting_price" style={priceStyle}>{price}</div>
     </div>)

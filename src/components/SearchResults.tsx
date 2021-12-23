@@ -15,7 +15,7 @@ export function SearchResult(props:{result:GameData, index:number})
         <div ref={ref} className="result_container">
             <img className="result_image" src={result.img}/>
             <div className="result_name">
-                <a href={result.link} target="_blank" style={{display:"inline-block", verticalAlign:"middle"}}>{result.name}</a>
+                <a href={result.link} target="_blank">{result.name}</a>
             </div>
             <div className="result_price">
                 {result.price.toFixed(2)}
