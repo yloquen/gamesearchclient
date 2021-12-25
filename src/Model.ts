@@ -1,6 +1,7 @@
-import {GameData} from "./types";
+import {GameData, WikiData} from "./types";
 import C_Evt from "./const/C_Evt";
 import {app} from "./App";
+
 
 export default class Model
 {
@@ -10,8 +11,7 @@ export default class Model
     public gameData:GameData[] = [];
     public priceData:GameData[] = [];
     public usdToBgn:number = 1.7;
-    public wikiData:string;
-    public wikiReviews:string;
+    public wikiData:WikiData;
 
 
     setSearchResults(data:any)
@@ -19,9 +19,11 @@ export default class Model
         this.gameData = data.gameData;
         this.priceData = data.priceData;
         this.wikiData = data.wikiData;
-        this.wikiReviews = data.wikiReviews;
 
-        this.gameData.sort((r1:GameData, r2:GameData) => {return r1.price - r2.price});
+        this.gameData.sort((r1:GameData, r2:GameData) =>
+        {
+            return r1.price - r2.price
+        });
 
         app.dispatcher.emit(C_Evt.LOAD_EVENT);
     }

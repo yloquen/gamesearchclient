@@ -13,3 +13,8 @@ export type MainState =
     loading:boolean
     loaded:boolean
 }
+
+export type WikiData =
+{
+    imgURL:string
+};
