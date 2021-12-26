@@ -14,6 +14,13 @@ export default function ResultsRight()
 }
 
 
+const WikiText = (props) =>
+{
+    debugger;
+    return <div>{props.info.name + " " + props.info.value}</div>;
+};
+
+
 const WikiData = (props:any) =>
 {
     const imgStyle:CSSProperties =
@@ -32,10 +39,16 @@ const WikiData = (props:any) =>
         width:"26vw"
     };
 
+    const textResults = props.wikiData.textInfo.map(info =>
+    {
+        return <WikiText info={info}/>;
+    });
+
     return (<div id="results_side_container">
         <img style={imgStyle} src="./assets/providers/wikipedia.png"/>
         <div style={infoBoxStyle}>
             <img className="wiki_img" src={props.wikiData.imgURL}/>
+            {textResults}
         </div>
     </div>)
 };

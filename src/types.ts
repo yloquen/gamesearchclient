@@ -14,7 +14,9 @@ export type MainState =
     loaded:boolean
 }
 
+
 export type WikiData =
 {
-    imgURL:string
+    imgURL:string,
+    textInfo:{name:string, value:string}[]
 };
