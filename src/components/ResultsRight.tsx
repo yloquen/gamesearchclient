@@ -16,14 +16,32 @@ export default function ResultsRight()
 
 const WikiText = (props) =>
 {
-    debugger;
-    return <div>{props.info.name + " " + props.info.value}</div>;
+    const containerStyle =
+    {
+        display:"flex",
+        flexDirection:"row"
+    };
+
+    const nameStyle =
+    {
+        width:"11vw",
+    };
+
+    const valueStyle =
+    {
+        width:"18vw"
+    };
+
+    return <div style={containerStyle}>
+        <div style={nameStyle}>{props.info.name}</div>
+        <div style={valueStyle}>{props.info.value}</div>
+    </div>;
 };
 
 
 const WikiData = (props:any) =>
 {
-    const imgStyle:CSSProperties =
+    const wikiLogoStyle:CSSProperties =
     {
         width:"60%"
     };
@@ -33,21 +51,23 @@ const WikiData = (props:any) =>
         display:"flex",
         flexDirection:"column",
         justifyContent:"center",
-        backgroundColor:"#ffffff",
-        marginTop:"1vw",
-        padding:"1vw",
-        width:"26vw"
+        backgroundColor:"#ffffff"
     };
 
-    const textResults = props.wikiData.textInfo.map(info =>
+    const wikiImgStyle =
+    {
+        padding:"1vw",
+    };
+
+    const textResults = props.wikiData?.textInfo?.map(info =>
     {
         return <WikiText info={info}/>;
     });
 
     return (<div id="results_side_container">
-        <img style={imgStyle} src="./assets/providers/wikipedia.png"/>
+        <img style={wikiLogoStyle} src="./assets/providers/wikipedia.png"/>
         <div style={infoBoxStyle}>
-            <img className="wiki_img" src={props.wikiData.imgURL}/>
+            <img className="wiki_img" style={wikiImgStyle} src={props.wikiData.imgURL}/>
             {textResults}
         </div>
     </div>)
