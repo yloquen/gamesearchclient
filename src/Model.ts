@@ -12,6 +12,7 @@ export default class Model
     public priceData:GameData[] = [];
     public usdToBgn:number = 1.7;
     public wikiData:WikiData;
+    public videoId:string;
 
 
     setSearchResults(data:any)
@@ -19,6 +20,7 @@ export default class Model
         this.gameData = data.gameData;
         this.priceData = data.priceData;
         this.wikiData = data.wikiData;
+        this.videoId = data.videoId;
 
         this.gameData.sort((r1:GameData, r2:GameData) =>
         {

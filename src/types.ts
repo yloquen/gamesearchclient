@@ -17,6 +17,7 @@ export type MainState =
 
 export type WikiData =
 {
+    link:string,
     imgURL:string,
     textInfo:{name:string, value:string}[]
 };

@@ -8,7 +8,7 @@ export default function ResultsLeft()
 {
     return (<div id="results_left_container" className="side_panel">
             {app.model.loaded ? <PriceChartingList/> : undefined}
-            {app.model.loaded ? <GameVideo/> : undefined}
+            {app.model.loaded ? <GameVideo videoId={app.model.videoId}/> : undefined}
         </div>);
 }
 
@@ -24,7 +24,7 @@ const GameVideo = (props:any) =>
 
     return (
         <iframe style={style}
-            src="https://www.youtube.com/embed/tgbNymZ7vqY">
+            src={"https://www.youtube.com/embed/" + props.videoId}>
         </iframe>);
 };
 
@@ -42,8 +42,8 @@ const PriceChartingList = (props:any) =>
         return <PriceChartingItem priceData={priceData}/>
     });
 
-    return (<div id="results_side_container">
-        <img width="50%" style={imgStyle} src="./assets/providers/pricecharting.png"/>
+    return (<div id="results_side_container" className="bordered_field">
+        <img style={imgStyle} src="./assets/providers/pricecharting.png"/>
         {results}
     </div>)
 };
@@ -53,16 +53,18 @@ const PriceChartingItem = (props:{priceData:GameData}) =>
 {
     const nameStyle:CSSProperties =
     {
-        width:"22vw"
+        width:"22vw",
+        fontSize:"0.75rem"
     };
 
     const priceStyle:CSSProperties =
     {
         width:"8vw",
         textAlign:"right",
+        fontSize:"0.75rem"
     };
 
-    const MAX_LENGTH = 60;
+    const MAX_LENGTH = 50;
     let name = props.priceData.name;
     if (name.length > MAX_LENGTH)
     {

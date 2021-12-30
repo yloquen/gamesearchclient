@@ -15,7 +15,7 @@ export default function LoadingCircle(props:any)
             position:"fixed",
             left:"50vw",
             top:"50vh",
-            transform:"translate(-50%, -50%)",
+            transform:"translate(-50%, -50%); rotate(180deg)",
             filter:"hue-rotate(222deg) grayscale(80%) brightness(180%)"
         };
 

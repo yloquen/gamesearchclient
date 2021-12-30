@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffb94d;
+    background:linear-gradient(0deg, #ffb94d 0%, #ffcc33 100%);
     padding: 0.5em;
     font-size: 1.25rem;
     border-bottom: #6a4d20 solid 1px;
@@ -25,16 +25,6 @@
     width:10%;
     font-family: "Rubik","sans-serif";
     font-size: 1rem;
-}
-
-.price_charting_item
-{
-    display:flex;
-    flex-direction:row;
-    padding:0.075vw;
-    padding-left:0.2vw;
-    padding-right:0.2vw;
-    margin-bottom: 1vw;
 }
 
 

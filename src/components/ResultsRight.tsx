@@ -50,13 +50,15 @@ const WikiData = (props:any) =>
     {
         display:"flex",
         flexDirection:"column",
-        justifyContent:"center",
-        backgroundColor:"#ffffff"
+        justifyContent:"right",
+        backgroundColor:"#ffffff",
+        alignItems:"center"
     };
 
     const wikiImgStyle =
     {
         padding:"1vw",
+        width:"20vw"
     };
 
     const textResults = props.wikiData?.textInfo?.map(info =>
@@ -64,10 +66,12 @@ const WikiData = (props:any) =>
         return <WikiText info={info}/>;
     });
 
-    return (<div id="results_side_container">
-        <img style={wikiLogoStyle} src="./assets/providers/wikipedia.png"/>
+    return (<div id="results_side_container" className="results_side_container bordered_field">
+        <a href={app.model.wikiData.link} target="_blank">
+            <img style={wikiLogoStyle} src="./assets/providers/wikipedia.png"/>
+        </a>
         <div style={infoBoxStyle}>
-            <img className="wiki_img" style={wikiImgStyle} src={props.wikiData.imgURL}/>
+            <img style={wikiImgStyle} src={props.wikiData.imgURL}/>
             {textResults}
         </div>
     </div>)
