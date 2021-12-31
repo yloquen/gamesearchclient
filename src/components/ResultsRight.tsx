@@ -19,17 +19,21 @@ const WikiText = (props) =>
     const containerStyle =
     {
         display:"flex",
-        flexDirection:"row"
+        flexDirection:"row",
+        paddingTop:"0.3vw",
+        fontSize:"0.8rem"
     };
 
     const nameStyle =
     {
-        width:"11vw",
+        width:"9vw",
+        backgroundColor:"#f5f8ff"
     };
 
     const valueStyle =
     {
-        width:"18vw"
+        width:"15vw",
+        backgroundColor:"#f5f8ff"
     };
 
     return <div style={containerStyle}>
