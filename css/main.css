@@ -85,7 +85,6 @@ input[type="text"]
     transform: translate(-50%, -50%);
 }
 
-
 .result_name
 {
     position: absolute;
@@ -98,7 +97,6 @@ input[type="text"]
     width:54%;
     transform: translate(0%, -50%);
 }
-
 
 .result_price
 {
@@ -114,13 +112,11 @@ input[type="text"]
     transform: translateY(-50%);
 }
 
-
 .result_provider
 {
     width:7vw;
     background-color: purple;
 }
-
 
 .side_panel
 {
@@ -141,7 +137,6 @@ input[type="text"]
     padding-right:0.2vw;
     margin-bottom:0.2vw;
 }
-
 
 @media (orientation: portrait)
 {

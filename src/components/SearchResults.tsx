@@ -18,7 +18,7 @@ export function SearchResult(props:{result:GameData, index:number})
                 <a href={result.link} target="_blank">{result.name}</a>
             </div>
             <div className="result_price">
-                {result.price.toFixed(2)}
+                {result.price?.toFixed(2)}
                 <div style={{height:"0.25vw"}}/>
                 <img className="result_provider" src={"./assets/providers/" + result.provider.toLocaleLowerCase() + ".png"} />
             </div>

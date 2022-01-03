@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "parcel ./index.html --port=8082 --open ",
+    "dev": "parcel ./index.html --port=8082 --open",
     "build": "parcel build ./index.html"
   },
   "author": "",

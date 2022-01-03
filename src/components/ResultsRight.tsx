@@ -1,9 +1,7 @@
 import * as React from "react";
 import {GameData} from "../types";
 import {app} from "../App";
-import Util from "../Util";
 import {CSSProperties} from "react";
-import ReactHtmlParser from 'react-html-parser';
 
 
 export default function ResultsRight()
