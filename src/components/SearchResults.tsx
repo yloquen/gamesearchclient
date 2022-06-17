@@ -13,7 +13,7 @@ export function SearchResult(props:{result:GameData, index:number})
 
     return (
         <div ref={ref} className="result_container bordered_field">
-            <img className="result_image" src={result.img}/>
+            <img className="result_image" src={"http://localhost/" + result.img}/>
             <div className="result_name">
                 <a href={result.link} target="_blank">{result.name}</a>
             </div>

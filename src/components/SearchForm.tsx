@@ -1,11 +1,15 @@
 import * as React from "react";
 import {app} from "../App";
-import {LegacyRef} from "react";
+import {CSSProperties, LegacyRef} from "react";
+import {fetchSearchResults} from "../features/search/searchSlice";
+import {useDispatch} from "react-redux";
 
 
 export function SearchForm(props:any)
 {
-    const logoStyle =
+    const dispatch = useDispatch();
+
+    const logoStyle:CSSProperties =
     {
         position:"absolute",
         left:"1.5vw"
@@ -17,7 +21,7 @@ export function SearchForm(props:any)
             <img style={logoStyle} alt="" src="./assets/game_search_logo.png"/>
 
             <input id="search_form_input" type="text" ref={ref}/>
-            <button id="search_form_button" onClick={() => {app.controller.runQuery(ref.current.value)}}>
+            <button id="search_form_button" onClick={() => { dispatch(fetchSearchResults(ref.current.value))} }>
                 Search
             </button>
         </div>

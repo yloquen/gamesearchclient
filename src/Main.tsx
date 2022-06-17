@@ -6,53 +6,34 @@ import C_Evt from "./const/C_Evt";
 import LoadingCircle from "./components/LoadingCircle";
 import {SearchResults} from "./components/SearchResults";
 import {SearchForm} from "./components/SearchForm";
+import {useSelector} from "react-redux";
+import {RootState} from "./store/store";
 
 
-export default class Main extends Component<any, MainState>
+const Main = () =>
 {
+    const loading = useSelector((state:RootState) => state.search.loading);
+    const loaded = useSelector((state:RootState) => state.search.loaded);
+    const searchResults = useSelector((state:RootState) => state.search.searchResults?.gameData);
 
+    const content =
+    [
+        <SearchForm/>,
+    ];
 
-    constructor(props:any)
+    if (loading)
     {
-        super(props);
-        this.state =
-        {
-            loading:false,
-            loaded:false
-        };
-        app.dispatcher.on(C_Evt.LOAD_EVENT, this.updateState, this);
+        content.push(<LoadingCircle/>);
     }
 
-
-    updateState()
+    if (loaded)
     {
-        this.setState(
-        {
-            loading:app.model.loading,
-            loaded:app.model.loaded
-        });
+        content.push(<SearchResults results = { searchResults }/>);
     }
 
+    return (<div id="main_container">
+        { content }
+    </div>);
+};
 
-    render()
-    {
-        const content =
-        [
-            <SearchForm/>,
-            <SearchResults results = { app.model.gameData }/>
-        ];
-
-        if (this.state.loading)
-        {
-            content.push(<LoadingCircle/>);
-        }
-
-        return (<div id="main_container">
-            { content }
-        </div>);
-    }
-
-
-}
-
-
+export default Main;

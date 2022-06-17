@@ -10,7 +10,7 @@ export default class Model
     public loaded:boolean = false;
     public gameData:GameData[] = [];
     public priceData:GameData[] = [];
-    public usdToBgn:number = 1.7;
+    public usdToBgn:number = 1.9;
     public wikiData:WikiData;
     public videoId:string;
 

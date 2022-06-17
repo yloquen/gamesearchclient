@@ -14,7 +14,7 @@ export default function ResultsRight()
 
 const WikiText = (props) =>
 {
-    const containerStyle =
+    const containerStyle:CSSProperties =
     {
         display:"flex",
         flexDirection:"row",
@@ -48,7 +48,7 @@ const WikiData = (props:any) =>
         width:"60%"
     };
 
-    const infoBoxStyle =
+    const infoBoxStyle:CSSProperties =
     {
         display:"flex",
         flexDirection:"column",

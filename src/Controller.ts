@@ -6,27 +6,46 @@ export default class Controller
 {
 
 
-    runQuery(searchString:string)
+    async runQuery(searchString:string)
     {
-        app.model.searchString = searchString;
-        const req = new XMLHttpRequest();
-        req.open("GET", C_Config.SERVER_URL + "/search?q=" + escape(searchString));
-        req.send();
-
-        app.model.loaded = false;
-        app.model.loading = true;
-        app.model.setSearchResults({gameData:[], priceData:[]});
-        app.dispatcher.emit(C_Evt.LOAD_EVENT);
-
-        req.onreadystatechange = () =>
+        return new Promise(function (resolve, reject)
         {
-            if (req.readyState == 4 && req.status == 200)
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET", C_Config.SERVER_URL + "/search?q=" + escape(searchString));
+
+            xhr.onload = function ()
             {
-                app.model.loaded = true;
-                app.model.loading = false;
-                app.model.setSearchResults(JSON.parse(req.response));
-            }
-        };
+                if (this.status >= 200 && this.status < 300)
+                {
+                    let resp = {};
+                    try
+                    {
+                        resp = JSON.parse(xhr.response)
+                    }
+                    finally
+                    {
+                        resolve(resp);
+                    }
+                }
+                else
+                {
+                    reject({
+                        status:this.status,
+                        statusText:xhr.statusText
+                    });
+                }
+            };
+
+            xhr.onerror = function ()
+            {
+                reject({
+                    status:this.status,
+                    statusText:xhr.statusText
+                });
+            };
+
+            xhr.send();
+        });
     }
 
 
