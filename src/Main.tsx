@@ -8,6 +8,7 @@ import {SearchResults} from "./components/SearchResults";
 import {SearchForm} from "./components/SearchForm";
 import {useSelector} from "react-redux";
 import {RootState} from "./store/store";
+import LoginWindow from "./components/LoginWindow";
 
 
 const Main = () =>
@@ -15,20 +16,26 @@ const Main = () =>
     const loading = useSelector((state:RootState) => state.search.loading);
     const loaded = useSelector((state:RootState) => state.search.loaded);
     const searchResults = useSelector((state:RootState) => state.search.searchResults?.gameData);
+    const loginWindow = useSelector((state:RootState) => state.user.loginWindow);
 
     const content =
     [
-        <SearchForm/>,
+        <SearchForm key={0}/>,
     ];
 
     if (loading)
     {
-        content.push(<LoadingCircle/>);
+        content.push(<LoadingCircle key={1}/>);
     }
 
     if (loaded)
     {
-        content.push(<SearchResults results = { searchResults }/>);
+        content.push(<SearchResults results = { searchResults } key={2}/>);
+    }
+
+    if (loginWindow)
+    {
+        content.push(<LoginWindow key={3}/>);
     }
 
     return (<div id="main_container">

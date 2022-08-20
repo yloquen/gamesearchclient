@@ -6,12 +6,17 @@ export default class Controller
 {
 
 
-    async runQuery(searchString:string)
+    async runQuery(method:string, path:string, query:string=undefined, body:string=undefined)
     {
         return new Promise(function (resolve, reject)
         {
             let xhr = new XMLHttpRequest();
-            xhr.open("GET", C_Config.SERVER_URL + "/search?q=" + escape(searchString));
+            let url = C_Config.SERVER_URL + path;
+            if (query)
+            {
+                url += ("?" + escape(query));
+            }
+            xhr.open(method, url);
 
             xhr.onload = function ()
             {
@@ -44,7 +49,7 @@ export default class Controller
                 });
             };
 
-            xhr.send();
+            xhr.send(body);
         });
     }
 

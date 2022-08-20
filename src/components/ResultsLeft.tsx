@@ -2,13 +2,18 @@ import * as React from "react";
 import {GameData} from "../types";
 import {app} from "../App";
 import {CSSProperties} from "react";
+import {useSelector} from "react-redux";
+import {RootState} from "../store/store";
 
 
 export default function ResultsLeft()
 {
+    const loaded = useSelector((state:RootState) => state.search.loaded);
+    const videoId = useSelector((state:RootState) => state.search.searchResults?.videoId);
+
     return (<div id="results_left_container" className="side_panel">
-            {app.model.loaded ? <PriceChartingList/> : undefined}
-            {app.model.loaded ? <GameVideo videoId={app.model.videoId}/> : undefined}
+            {loaded ? <PriceChartingList/> : undefined}
+            {loaded ? <GameVideo videoId={videoId}/> : undefined}
         </div>);
 }
 
@@ -37,7 +42,9 @@ const PriceChartingList = (props:any) =>
         paddingBottom:"1vw"
     };
 
-    const results = app.model.priceData.map((priceData:GameData) =>
+    const priceData = useSelector((state:RootState) => state.search.searchResults?.priceData);
+
+    const results = priceData.map((priceData:GameData) =>
     {
         return <PriceChartingItem priceData={priceData}/>
     });

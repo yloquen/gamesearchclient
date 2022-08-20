@@ -2,12 +2,16 @@ import * as React from "react";
 import {GameData} from "../types";
 import {app} from "../App";
 import {CSSProperties} from "react";
+import {useSelector} from "react-redux";
+import {RootState} from "../store/store";
 
 
 export default function ResultsRight()
 {
+    const loaded = useSelector((state:RootState) => state.search.loaded);
+
     return (<div id="results_right_container" className="side_panel">
-            {app.model.loaded ? <WikiData wikiData={app.model.wikiData}/> : undefined}
+            {loaded ? <WikiData/> : undefined}
         </div>);
 }
 
@@ -43,6 +47,8 @@ const WikiText = (props) =>
 
 const WikiData = (props:any) =>
 {
+    const wikiData:any = useSelector((state:RootState) => state.search.searchResults?.wikiData );
+
     const wikiLogoStyle:CSSProperties =
     {
         width:"60%"
@@ -63,17 +69,17 @@ const WikiData = (props:any) =>
         width:"20vw"
     };
 
-    const textResults = props.wikiData?.textInfo?.map(info =>
+    const textResults = wikiData?.textInfo?.map(info =>
     {
         return <WikiText info={info}/>;
     });
 
     return (<div id="results_side_container" className="results_side_container bordered_field">
-        <a href={app.model.wikiData.link} target="_blank">
+        <a href={wikiData.link} target="_blank">
             <img style={wikiLogoStyle} src="./assets/providers/wikipedia.png"/>
         </a>
         <div style={infoBoxStyle}>
-            <img style={wikiImgStyle} src={props.wikiData.imgURL}/>
+            <img style={wikiImgStyle} src={wikiData.imgURL}/>
             {textResults}
         </div>
     </div>)

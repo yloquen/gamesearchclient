@@ -3,6 +3,7 @@ import {app} from "../App";
 import {CSSProperties, LegacyRef} from "react";
 import {fetchSearchResults} from "../features/search/searchSlice";
 import {useDispatch} from "react-redux";
+import UserPanel from "./UserPanel";
 
 
 export function SearchForm(props:any)
@@ -24,6 +25,7 @@ export function SearchForm(props:any)
             <button id="search_form_button" onClick={() => { dispatch(fetchSearchResults(ref.current.value))} }>
                 Search
             </button>
+            <UserPanel/>
         </div>
     );
 }
