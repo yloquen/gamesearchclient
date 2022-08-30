@@ -11,10 +11,11 @@ export default class Controller
         return new Promise(function (resolve, reject)
         {
             let xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
             let url = C_Config.SERVER_URL + path;
             if (query)
             {
-                url += ("?" + escape(query));
+                url += ("?" + query);
             }
             xhr.open(method, url);
 

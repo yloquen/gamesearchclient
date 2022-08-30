@@ -4,7 +4,7 @@ import {app} from "../../App";
 
 export const fetchSearchResults = createAsyncThunk('search/request', async (queryString:string) =>
 {
-    return app.controller.runQuery("GET", "/search", "q=" + queryString);
+    return app.controller.runQuery("GET", "/search", "q=" + escape(queryString));
 });
 
 type SearchType =

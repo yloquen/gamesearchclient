@@ -5,7 +5,7 @@ import {fetchSearchResults} from "../search/searchSlice";
 
 export const makeLoginRequest = createAsyncThunk('user/login', async (loginData:any) =>
 {
-    return app.controller.runQuery("POST", "/login", undefined, JSON.stringify(JSON.stringify(loginData)));
+    return app.controller.runQuery("POST", "/login", undefined, JSON.stringify(loginData));
 });
 
 
