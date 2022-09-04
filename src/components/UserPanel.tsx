@@ -4,10 +4,13 @@ import Util from "../Util";
 import {useDispatch, useSelector} from "react-redux";
 import {CSSProperties} from "react";
 import {RootState} from "../store/store";
-import { showLoginWindow } from "../features/user/userSlice";
+import {makeLoginRequest, showLoginWindow} from "../features/user/userSlice";
+import {useState} from "react";
 
 export default function UserPanel(props:any)
 {
+    const [init, setInit] = useState(false);
+
     const loggedIn = useSelector((state:RootState) => state.user.loggedIn);
     const username = useSelector((state:RootState) => state.user.username);
 
@@ -19,6 +22,11 @@ export default function UserPanel(props:any)
     };
 
     const dispatch = useDispatch();
+    if (!init)
+    {
+        dispatch(makeLoginRequest({}));
+        setInit(true);
+    }
 
     let content;
     if (loggedIn)

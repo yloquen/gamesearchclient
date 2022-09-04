@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {GameData, WikiData} from "../../types";
 import {app} from "../../App";
+import { useNavigate } from "react-router-dom";
 
 export const fetchSearchResults = createAsyncThunk('search/request', async (queryString:string) =>
 {
@@ -35,7 +36,12 @@ const searchSlice = createSlice(
         initialState:initialState,
         reducers:
         {
-
+            resetSearch(state:SearchType)
+            {
+                state.loading = false;
+                state.loaded = false;
+                state.searchResults = undefined
+            }
         },
         extraReducers(builder)
         {
@@ -55,3 +61,4 @@ const searchSlice = createSlice(
     });
 
 export default searchSlice.reducer;
+export const { resetSearch } = searchSlice.actions;

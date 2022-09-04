@@ -1,6 +1,9 @@
 import C_Config from "./const/C_Config";
 import {app} from "./App";
 import C_Evt from "./const/C_Evt";
+import {store} from "./store/store";
+import {resetSearch} from "./features/search/searchSlice";
+import {makeLoginRequest} from "./features/user/userSlice";
 
 export default class Controller
 {

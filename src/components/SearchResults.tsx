@@ -11,28 +11,6 @@ import LoadingCircle from "./LoadingCircle";
 import {fetchSearchResults} from "../features/search/searchSlice";
 
 
-export function SearchResult(props:{result:GameData, index:number})
-{
-    const ref = Util.createTweens([], [{ duration:.5, alpha:0, delay:props.index * .1 }]);
-
-    const result:GameData = props.result;
-
-    return (
-        <div ref={ref} className="result_container bordered_field">
-
-            <img className="result_image" src={"http://localhost/" + result.img}/>
-            <div className="result_name">
-                <a href={result.link} target="_blank">{result.name}</a>
-            </div>
-            <div className="result_price">
-                {result.price?.toFixed(2)}
-                <div style={{height:"0.25vw"}}/>
-                <img className="result_provider" src={"./assets/providers/" + result.provider.toLocaleLowerCase() + ".png"} />
-            </div>
-        </div>);
-}
-
-
 export function SearchResults(props:any)
 {
     const dispatch = useDispatch();
@@ -43,6 +21,8 @@ export function SearchResults(props:any)
     const searchResults = useSelector((state:RootState) => state.search.searchResults?.gameData);
 
     let content;
+
+    console.log(">>>" + searchParams.get("q") + " " + loading + " " + loaded);
 
     if (!loaded)
     {
@@ -69,4 +49,26 @@ export function SearchResults(props:any)
     }
 
     return (content);
+}
+
+
+export function SearchResult(props:{result:GameData, index:number})
+{
+    const ref = Util.createTweens([], [{ duration:.5, alpha:0, delay:props.index * .1 }]);
+
+    const result:GameData = props.result;
+
+    return (
+        <div ref={ref} className="result_container bordered_field">
+
+            <img className="result_image" src={"http://localhost/" + result.img}/>
+            <div className="result_name">
+                <a href={result.link} target="_blank">{result.name}</a>
+            </div>
+            <div className="result_price">
+                {result.price?.toFixed(2)}
+                <div style={{height:"0.25vw"}}/>
+                <img className="result_provider" src={"./assets/providers/" + result.provider.toLocaleLowerCase() + ".png"} />
+            </div>
+        </div>);
 }

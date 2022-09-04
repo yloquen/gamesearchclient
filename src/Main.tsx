@@ -1,36 +1,36 @@
 import * as React from "react";
-import {Component} from 'react';
+import {Component, useEffect} from 'react';
 import {app} from "./App";
 import {MainState} from "./types";
 import C_Evt from "./const/C_Evt";
 import LoadingCircle from "./components/LoadingCircle";
 import {SearchResults} from "./components/SearchResults";
 import {SearchForm} from "./components/SearchForm";
-import {useSelector} from "react-redux";
-import {RootState} from "./store/store";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState, store} from "./store/store";
 import LoginWindow from "./components/LoginWindow";
 import {Outlet} from "react-router-dom";
+import {resetSearch} from "./features/search/searchSlice";
 
 
 const Main = () =>
 {
     const loginWindow = useSelector((state:RootState) => state.user.loginWindow);
 
+    const dispatch = useDispatch();
+    useEffect(() =>
+    {
+        window.addEventListener('popstate', function (event)
+        {
+            dispatch(resetSearch());
+        });
+    });
+
     const content =
     [
         <SearchForm key={0}/>,
-        <Outlet />
+        <Outlet key={1} />
     ];
-
-/*    if (loading)
-    {
-        content.push(<LoadingCircle key={1}/>);
-    }*/
-
-/*    if (loaded)
-    {
-        content.push(<SearchResults results = {searchResults} key={2}/>);
-    }*/
 
     if (loginWindow)
     {

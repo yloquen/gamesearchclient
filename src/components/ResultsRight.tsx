@@ -69,9 +69,9 @@ const WikiData = (props:any) =>
         width:"20vw"
     };
 
-    const textResults = wikiData?.textInfo?.map(info =>
+    const textResults = wikiData?.textInfo?.map((info:any, index:number) =>
     {
-        return <WikiText info={info}/>;
+        return <WikiText key={index} info={info}/>;
     });
 
     return (<div id="results_side_container" className="results_side_container bordered_field">

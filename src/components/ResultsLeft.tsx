@@ -44,9 +44,9 @@ const PriceChartingList = (props:any) =>
 
     const priceData = useSelector((state:RootState) => state.search.searchResults?.priceData);
 
-    const results = priceData.map((priceData:GameData) =>
+    const results = priceData.map((priceData:GameData, index:number) =>
     {
-        return <PriceChartingItem priceData={priceData}/>
+        return <PriceChartingItem key={index} priceData={priceData}/>
     });
 
     return (<div id="results_side_container" className="bordered_field">

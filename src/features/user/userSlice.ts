@@ -11,6 +11,7 @@ export const makeLoginRequest = createAsyncThunk('user/login', async (loginData:
 
 const initialState =
 {
+
     loginWindow:false,
     loggedIn:false,
     username:""
@@ -35,9 +36,17 @@ const userSlice = createSlice(
                 {
 
                 })
-                .addCase(makeLoginRequest.fulfilled, (state:any, action) =>
+                .addCase(makeLoginRequest.fulfilled, (state:any, action:any) =>
                 {
-                    // action.payload;
+                    if (action.payload?.email)
+                    {
+                        state.loggedIn = true;
+                        state.username = action.payload?.email;
+                    }
+                    else
+                    {
+                        state.loggedIn = false;
+                    }
                 })
         }
     });
