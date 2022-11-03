@@ -11,7 +11,6 @@ export const makeLoginRequest = createAsyncThunk('user/login', async (loginData:
 
 const initialState =
 {
-
     loginWindow:false,
     loggedIn:false,
     username:""
@@ -19,37 +18,37 @@ const initialState =
 
 
 const userSlice = createSlice(
+{
+    name:'user',
+    initialState:initialState,
+    reducers:
     {
-        name:'user',
-        initialState:initialState,
-        reducers:
+        showLoginWindow(state, action:PayloadAction<boolean>)
         {
-            showLoginWindow(state, payload:PayloadAction<boolean>)
-            {
-                state.loginWindow = payload.payload;
-            }
-        },
-        extraReducers(builder)
-        {
-            builder
-                .addCase(makeLoginRequest.pending, (state, action) =>
-                {
-
-                })
-                .addCase(makeLoginRequest.fulfilled, (state:any, action:any) =>
-                {
-                    if (action.payload?.email)
-                    {
-                        state.loggedIn = true;
-                        state.username = action.payload?.email;
-                    }
-                    else
-                    {
-                        state.loggedIn = false;
-                    }
-                })
+            state.loginWindow = action.payload;
         }
-    });
+    },
+    extraReducers(builder)
+    {
+        builder
+            .addCase(makeLoginRequest.pending, (state, action) =>
+            {
+
+            })
+            .addCase(makeLoginRequest.fulfilled, (state:any, action:any) =>
+            {
+                if (action.payload?.email)
+                {
+                    state.loggedIn = true;
+                    state.username = action.payload?.email;
+                }
+                else
+                {
+                    state.loggedIn = false;
+                }
+            })
+    }
+});
 
 export const { showLoginWindow } = userSlice.actions;
 export default userSlice.reducer;

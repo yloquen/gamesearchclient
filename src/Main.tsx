@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Component, useEffect} from 'react';
+import {Component, useEffect, useRef} from 'react';
 import {app} from "./App";
 import {MainState} from "./types";
 import C_Evt from "./const/C_Evt";
@@ -11,6 +11,9 @@ import {RootState, store} from "./store/store";
 import LoginWindow from "./components/LoginWindow";
 import {Outlet} from "react-router-dom";
 import {resetSearch} from "./features/search/searchSlice";
+import {getFadeWrapper} from "./hoc/FadeWrapper";
+
+
 
 
 const Main = () =>
@@ -24,18 +27,17 @@ const Main = () =>
         {
             dispatch(resetSearch());
         });
-    });
 
+        return () => console.log("Removing LoginWindow");
+    }, []);
+
+    const FadeLoginWin = getFadeWrapper(LoginWindow);
     const content =
     [
+        loginWindow ? <FadeLoginWin key={4}/> : null,
         <SearchForm key={0}/>,
         <Outlet key={1} />
     ];
-
-    if (loginWindow)
-    {
-        content.push(<LoginWindow key={3}/>);
-    }
 
     return (<div id="main_container">
         { content }
