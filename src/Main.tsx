@@ -8,10 +8,12 @@ import {SearchResults} from "./components/SearchResults";
 import {SearchForm} from "./components/SearchForm";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState, store} from "./store/store";
-import LoginWindow from "./components/LoginWindow";
+import {LoginWindow} from "./components/LoginWindow";
 import {Outlet} from "react-router-dom";
 import {resetSearch} from "./features/search/searchSlice";
 import {getFadeWrapper} from "./hoc/FadeWrapper";
+import {showLoginWindow} from "./features/user/userSlice";
+
 
 
 
@@ -31,16 +33,15 @@ const Main = () =>
         return () => console.log("Removing LoginWindow");
     }, []);
 
-    const FadeLoginWin = getFadeWrapper(LoginWindow);
-    const content =
+    const comps =
     [
-        loginWindow ? <FadeLoginWin key={4}/> : null,
-        <SearchForm key={0}/>,
-        <Outlet key={1} />
+        <SearchForm key={2}/>,
+        <Outlet key={3}/>,
+        loginWindow ? <LoginWindow key={1} myProp={"zzz"} otherProp={"yyy"}/> : null
     ];
 
     return (<div id="main_container">
-        { content }
+        { comps }
     </div>);
 };
 

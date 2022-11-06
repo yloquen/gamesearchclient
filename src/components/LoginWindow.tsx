@@ -7,17 +7,35 @@ import {RootState} from "../store/store";
 import {makeLoginRequest, showLoginWindow} from "../features/user/userSlice";
 import "/css/login.sass";
 import {GlobalContext} from "../index";
+import {useEffect} from "react";
+import {resetSearch} from "../features/search/searchSlice";
+import {getFadeWrapper, getFadeWrapperFuncComp} from "../hoc/FadeWrapper";
 
 
 
-const LoginWindow = (props:{closeRequest:Function}) =>
+export const LoginWindow = (props:any) =>
 {
+    const dispatch = useDispatch();
+    const FadeLoginWin = getFadeWrapperFuncComp(LoginWinBase, () => dispatch(showLoginWindow(false)));
+    return (<FadeLoginWin {...props}/>);
+};
+
+
+const LoginWinBase = (props:any) =>
+{
+    useEffect(() =>
+    {
+        console.log("did mount");
+
+        return () => { console.log("will unmount"); }
+    }, []);
+
+
     const dispatch = useDispatch();
 
     const onSubmit = () =>
     {
         props.closeRequest();
-        // dispatch(showLoginWindow(false));
         const emailInput:HTMLInputElement = document.getElementById("loginEmail") as HTMLInputElement;
         const passInput:HTMLInputElement = document.getElementById("loginPass") as HTMLInputElement;
         dispatch(makeLoginRequest({email:emailInput.value, pass:passInput.value}));
@@ -46,8 +64,6 @@ const LoginWindow = (props:{closeRequest:Function}) =>
             </div>
         </>)
 };
-
-export default LoginWindow;
 
 
 

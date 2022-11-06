@@ -18,7 +18,8 @@ export default function UserPanel(props:any)
     {
         position:"absolute",
         right:"1.5vw",
-        padding:"1 vw"
+        padding:"1 vw",
+        fontSize:"1.25rem"
     };
 
     const dispatch = useDispatch();

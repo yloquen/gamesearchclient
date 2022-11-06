@@ -1,5 +1,4 @@
 import "../css/main.css";
-import "../css/search_form.css";
 
 import ReactDOM from "react-dom";
 import React from "react";
@@ -24,23 +23,26 @@ ReactDOM.render(root, document.getElementById('root'));
 */
 
 
+// window.addEventListener("resize", () => { render(); });
+
+function render()
+{
+    ReactDOM.render(
+        <GlobalContext.Provider value={themeState}>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Main/>}>
+                            <Route path="/search" element={<SearchResults/>}/>
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </Provider>
+        </GlobalContext.Provider>,
+        document.getElementById('root'));
+}
 
 
+render();
 
-
-
-
-ReactDOM.render(
-    <GlobalContext.Provider value={themeState}>
-        <Provider store={store}>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Main/>}>
-                        <Route path="/search" element={<SearchResults/>}/>
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </Provider>
-    </GlobalContext.Provider>,
-    document.getElementById('root'));
 

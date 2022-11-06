@@ -1,16 +1,44 @@
-import React, {CSSProperties} from "react";
+import React, {CSSProperties, useState} from "react";
 import "/css/login.sass";
 import {showLoginWindow} from "../features/user/userSlice";
 import {connect, useDispatch} from "react-redux";
 import {gsap} from "gsap";
 
-export function getFadeWrapper(WrappedComponent)
-{
 
-    const mapDispatchToProps = (dispatch) =>
+export function getFadeWrapperFuncComp(WrappedComponent, closeFunc:Function)
+{
+    return (props) =>
     {
-        return { close: () => dispatch(showLoginWindow(false)) }
-    };
+        const [closing, setClosing] = useState(false);
+
+        const animDur = .15;
+        let wrapperStyle:CSSProperties =
+            {
+                position:"fixed",
+                animationName: "fade_in",
+                animationDuration: animDur + "s"
+            };
+
+        if (closing)
+        {
+            wrapperStyle.opacity = 0;
+            wrapperStyle.animationName = "fade_out";
+
+            gsap.delayedCall(animDur, () => { closeFunc() });
+        }
+
+        const {myProp, ...childProps} = props;
+
+        return (<div style={wrapperStyle}>
+            <WrappedComponent {...childProps} closeRequest={() => setClosing(true) }/>;
+        </div>);
+    }
+}
+
+
+export function getFadeWrapper(WrappedComponent, closeFunc:Function)
+{
+    const mapDispatchToProps = () => { return { close: closeFunc }};
 
     return connect(null, mapDispatchToProps)(class FadeWrapper extends React.Component<any, any>
     {
@@ -32,21 +60,19 @@ export function getFadeWrapper(WrappedComponent)
 
         render()
         {
-            const animDur = 2;
+            const animDur = .15;
 
             let wrapperStyle:CSSProperties =
             {
+                position:"fixed",
                 animationName: "fade_in",
                 animationDuration: animDur + "s"
             };
 
             if (this.state.closing)
             {
-                 wrapperStyle =
-                {
-                    animationName: "fade_out",
-                    animationDuration: animDur + "s"
-                };
+                wrapperStyle.opacity = 0;
+                wrapperStyle.animationName = "fade_out";
 
                 gsap.delayedCall(animDur, () =>
                 {

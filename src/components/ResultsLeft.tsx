@@ -61,14 +61,12 @@ const PriceChartingItem = (props:{priceData:GameData}) =>
     const nameStyle:CSSProperties =
     {
         width:"22vw",
-        fontSize:"0.75rem"
     };
 
     const priceStyle:CSSProperties =
     {
         width:"8vw",
         textAlign:"right",
-        fontSize:"0.75rem"
     };
 
     const MAX_LENGTH = 50;

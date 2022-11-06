@@ -42,13 +42,14 @@ input[type="text"]
 
 #results_side_container
 {
+    background-color: #fff;
     display:flex;
     flex-direction:column;
     justify-content:center;
-    background-color:#ffffff;
     margin-top:1vw;
     padding:1vw;
     width:90%;
+    font-size: min(0.75rem, 1.5vw)
 }
 
 #results_root
@@ -64,6 +65,7 @@ input[type="text"]
     width:38vw;
     height:8vw;
     margin-bottom: 1vw;
+    font-size: min(2vw, 1rem)
 }
 
 .bordered_field

@@ -3,7 +3,7 @@ import Util from "../Util";
 import ResultsLeft from "./ResultsLeft";
 import ResultsRight from "./ResultsRight";
 import * as React from "react";
-import {LegacyRef} from "react";
+import {CSSProperties, LegacyRef} from "react";
 import {URLSearchParamsInit, useSearchParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/store";
@@ -58,8 +58,13 @@ export function SearchResult(props:{result:GameData, index:number})
 
     const result:GameData = props.result;
 
+    const style:CSSProperties =
+    {
+        // fontSize: Math.round(window.innerHeight * .05) + "px"
+    };
+
     return (
-        <div ref={ref} className="result_container bordered_field">
+        <div ref={ref} style={style} className="result_container bordered_field">
 
             <img className="result_image" src={"http://localhost/" + result.img}/>
             <div className="result_name">
