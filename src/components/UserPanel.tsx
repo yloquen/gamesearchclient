@@ -6,6 +6,7 @@ import {CSSProperties} from "react";
 import {RootState} from "../store/store";
 import {makeLoginRequest, showLoginWindow} from "../features/user/userSlice";
 import {useState} from "react";
+import {DefaultButton} from "./BasicComponents";
 
 export default function UserPanel(props:any)
 {
@@ -14,8 +15,11 @@ export default function UserPanel(props:any)
     const loggedIn = useSelector((state:RootState) => state.user.loggedIn);
     const username = useSelector((state:RootState) => state.user.username);
 
-    const style:CSSProperties =
+    const containerStyle:CSSProperties =
     {
+        display:"flex",
+        flexDirection:"row",
+        placeItems: "center",
         position:"absolute",
         right:"1.5vw",
         padding:"1 vw",
@@ -25,7 +29,7 @@ export default function UserPanel(props:any)
     const dispatch = useDispatch();
     if (!init)
     {
-        dispatch(makeLoginRequest({}));
+        dispatch(makeLoginRequest({}) as any);
         setInit(true);
     }
 
@@ -37,11 +41,15 @@ export default function UserPanel(props:any)
     else
     {
         content = [
-            <button key={1} onClick={() => {dispatch(showLoginWindow(true))}}>Login</button>,
+            <DefaultButton key={1} className="search_bar_element"
+                onClick={() => {dispatch(showLoginWindow(true))}}>Login</DefaultButton>,
+
             <span key={2}>&nbsp;&nbsp;&nbsp;</span>,
-            <button key={3} onClick={() => {}}>Sign up</button>
+
+            <DefaultButton key={3} className="search_bar_element"
+                onClick={() => {}}>Sign up</DefaultButton>
         ];
     }
 
-    return <div style={style}>{content}</div>;
+    return <div style={containerStyle}>{content}</div>;
 }

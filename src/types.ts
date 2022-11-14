@@ -1,4 +1,5 @@
 import {URLSearchParamsInit} from "react-router-dom";
+import {store} from "./store/store";
 
 export type GameData =
 {
@@ -29,3 +30,6 @@ export type UseSearchParamsType = readonly [URLSearchParams, (nextInit: URLSearc
     replace?: boolean | undefined;
     state?: any;
 } | undefined) => void];
+
+
+export type AppDispatch = typeof store.getState;

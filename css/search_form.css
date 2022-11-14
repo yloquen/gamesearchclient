@@ -1,42 +1,50 @@
+#logo
+{
+    height: 80%;
+    position: absolute;
+    left: 1.5vw;
+    cursor: pointer;
+}
+
 #search_form_container
 {
+    position: relative;
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
     background:linear-gradient(0deg, #ffb94d 0%, #ffcc33 100%);
     padding: 0.5em;
-    font-size: 1.25rem;
     border-bottom: #6a4d20 solid 1px;
 }
 
-/*#search_form_input:-webkit-autofill,*/
 #search_form_input
 {
-    width:22%;
+    width: 20%;
     font-family: "Rubik","sans-serif";
     margin-right: 2%;
-    font-size: 1.25rem;
+    height: 2vw;
 }
 
 
-#search_form_button
+.search_bar_element
 {
-    width:10%;
-    height: 4vw;
-    font-family: "Rubik","sans-serif";
-    font-size: min(1vw, 1.25rem);
+    height: 2vw;
+    font-size: calc(min(1.75vw, 1.25rem));
 }
 
 
-@media (orientation: portrait)
+@media screen and (max-aspect-ratio: 13/9)
 {
     #search_form_input
     {
-        width:50%;
+        width: 30%;
+        height: 5vw;
     }
 
-    #search_form_button
+    .search_bar_element
     {
-        width:20%;
+        height: 5vw;
+        font-size: calc(min(4vw, 3rem));
     }
 }

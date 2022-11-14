@@ -4,6 +4,7 @@ import {app} from "../App";
 import {CSSProperties} from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "../store/store";
+import C_Config from "../const/C_Config";
 
 
 export default function ResultsRight()
@@ -23,18 +24,19 @@ const WikiText = (props) =>
         display:"flex",
         flexDirection:"row",
         paddingTop:"0.3vw",
-        fontSize:"0.8rem"
+        fontSize:"min(1.5vw, 0.75rem)",
+        width:"100%"
     };
 
     const nameStyle =
     {
-        width:"9vw",
+        width:"40%",
         backgroundColor:"#f5f8ff"
     };
 
     const valueStyle =
     {
-        width:"15vw",
+        width:"60%",
         backgroundColor:"#f5f8ff"
     };
 
@@ -65,8 +67,8 @@ const WikiData = (props:any) =>
 
     const wikiImgStyle =
     {
-        padding:"1vw",
-        width:"20vw"
+        padding:"2%",
+        width:"90%"
     };
 
     const textResults = wikiData?.textInfo?.map((info:any, index:number) =>
@@ -74,12 +76,12 @@ const WikiData = (props:any) =>
         return <WikiText key={index} info={info}/>;
     });
 
-    return (<div id="results_side_container" className="results_side_container bordered_field">
+    return (<div className="results_side_container bordered_field">
         <a href={wikiData.link} target="_blank">
             <img style={wikiLogoStyle} src="./assets/providers/wikipedia.png"/>
         </a>
         <div style={infoBoxStyle}>
-            <img style={wikiImgStyle} src={wikiData.imgURL}/>
+            <img style={wikiImgStyle} src={C_Config.IMG_URL + wikiData.imgURL}/>
             {textResults}
         </div>
     </div>)

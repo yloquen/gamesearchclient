@@ -20,27 +20,14 @@ body
     margin:0;
 }
 
-input[type="text"]
+
+.bordered_field
 {
-    font-size:24px;
+    border:0.02vw solid rgba(0, 59, 168, 0.5);
 }
 
-#main_container
-{
-    display: flex;
-    flex-direction: column;
-}
 
-#results_center_container
-{
-    display: flex;
-    flex-direction: column;
-    width:40%;
-    padding:1vw;
-    height:100%;
-}
-
-#results_side_container
+.results_side_container
 {
     background-color: #fff;
     display:flex;
@@ -52,31 +39,54 @@ input[type="text"]
     font-size: min(0.75rem, 1.5vw)
 }
 
+
 #results_root
 {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-columns: 30% 40% 30%;
+    grid-template-rows: 100%;
 }
+
+#results_left_container
+{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    width: 100%;
+}
+
+#results_center_container
+{
+    padding: 1vw;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    width: 100%;
+}
+
+
+#results_right_container
+{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    width: 100%;
+}
+
 
 .result_container
 {
+    margin-bottom: 1vw;
     position: relative;
     background-color: #ffffff;
-    width:38vw;
-    height:8vw;
-    margin-bottom: 1vw;
-    font-size: min(2vw, 1rem)
+    width: 96%;
+    aspect-ratio: 4.5;
+    font-size: min(2vw, 1rem);
 }
 
-.bordered_field
-{
-    border:0.02vw solid rgba(0, 59, 168, 0.5);
-}
-
-.result_container:last-child
-{
-
-}
 
 .result_image
 {
@@ -140,21 +150,47 @@ input[type="text"]
     margin-bottom:0.2vw;
 }
 
-@media (orientation: portrait)
+
+
+@media screen and (max-aspect-ratio: 13/9)
 {
-    .side_panel
+    #results_root
     {
-        display: none;
+        display: grid;
+        grid-template-columns: 48% 48%;
+        grid-template-rows: auto auto;
+        margin-left: 2%;
+    }
+
+    #results_left_container
+    {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        width: 100%;
+    }
+
+    #results_right_container
+    {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        width: 100%;
     }
 
     #results_center_container
     {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        padding: 1vw;
+        padding-top: 20px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width:100%;
-        padding:1vw;
-        height:100%;
     }
 
     .result_container

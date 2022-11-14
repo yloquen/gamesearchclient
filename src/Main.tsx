@@ -1,21 +1,11 @@
 import * as React from "react";
-import {Component, useEffect, useRef} from 'react';
-import {app} from "./App";
-import {MainState} from "./types";
-import C_Evt from "./const/C_Evt";
-import LoadingCircle from "./components/LoadingCircle";
-import {SearchResults} from "./components/SearchResults";
+import { useEffect } from 'react';
 import {SearchForm} from "./components/SearchForm";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState, store} from "./store/store";
 import {LoginWindow} from "./components/LoginWindow";
 import {Outlet} from "react-router-dom";
 import {resetSearch} from "./features/search/searchSlice";
-import {getFadeWrapper} from "./hoc/FadeWrapper";
-import {showLoginWindow} from "./features/user/userSlice";
-
-
-
 
 
 const Main = () =>
@@ -29,18 +19,16 @@ const Main = () =>
         {
             dispatch(resetSearch());
         });
-
-        return () => console.log("Removing LoginWindow");
     }, []);
 
     const comps =
     [
         <SearchForm key={2}/>,
         <Outlet key={3}/>,
-        loginWindow ? <LoginWindow key={1} myProp={"zzz"} otherProp={"yyy"}/> : null
+        loginWindow ? <LoginWindow key={1}/> : null
     ];
 
-    return (<div id="main_container">
+    return (<div>
         { comps }
     </div>);
 };

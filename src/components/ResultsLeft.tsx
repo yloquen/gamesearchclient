@@ -23,8 +23,8 @@ const GameVideo = (props:any) =>
     const style =
     {
         marginTop:"1.5vw",
-        width:"27vw",
-        height:"15.1875vw"
+        width:"90%",
+        aspectRatio: 16/9
     };
 
     return (
@@ -49,7 +49,7 @@ const PriceChartingList = (props:any) =>
         return <PriceChartingItem key={index} priceData={priceData}/>
     });
 
-    return (<div id="results_side_container" className="bordered_field">
+    return (<div className="results_side_container bordered_field">
         <img style={imgStyle} src="./assets/providers/pricecharting.png"/>
         {results}
     </div>)
@@ -60,13 +60,13 @@ const PriceChartingItem = (props:{priceData:GameData}) =>
 {
     const nameStyle:CSSProperties =
     {
-        width:"22vw",
+        width:"70%",
     };
 
     const priceStyle:CSSProperties =
     {
-        width:"8vw",
-        textAlign:"right",
+        width:"30%",
+        textAlign:"right"
     };
 
     const MAX_LENGTH = 50;

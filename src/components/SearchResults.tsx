@@ -1,4 +1,4 @@
-import {GameData, UseSearchParamsType} from "../types";
+import {AppDispatch, GameData, UseSearchParamsType} from "../types";
 import Util from "../Util";
 import ResultsLeft from "./ResultsLeft";
 import ResultsRight from "./ResultsRight";
@@ -9,6 +9,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/store";
 import LoadingCircle from "./LoadingCircle";
 import {fetchSearchResults} from "../features/search/searchSlice";
+import C_Config from "../const/C_Config";
 
 
 export function SearchResults(props:any)
@@ -22,13 +23,11 @@ export function SearchResults(props:any)
 
     let content;
 
-    console.log(">>>" + searchParams.get("q") + " " + loading + " " + loaded);
-
     if (!loaded)
     {
         if (!loading)
         {
-            dispatch(fetchSearchResults(searchParams.get("q")));
+            dispatch(fetchSearchResults(searchParams.get("q")) as any);
         }
         content = <LoadingCircle/>
     }
@@ -58,15 +57,10 @@ export function SearchResult(props:{result:GameData, index:number})
 
     const result:GameData = props.result;
 
-    const style:CSSProperties =
-    {
-        // fontSize: Math.round(window.innerHeight * .05) + "px"
-    };
-
     return (
-        <div ref={ref} style={style} className="result_container bordered_field">
+        <div ref={ref} className="result_container bordered_field">
 
-            <img className="result_image" src={"http://localhost/" + result.img}/>
+            <img className="result_image" src={C_Config.IMG_URL + result.img}/>
             <div className="result_name">
                 <a href={result.link} target="_blank">{result.name}</a>
             </div>
