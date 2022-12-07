@@ -30,7 +30,7 @@ export function getFadeWrapperFuncComp(WrappedComponent, closeFunc:Function)
         const {myProp, ...childProps} = props;
 
         return (<div style={wrapperStyle}>
-            <WrappedComponent {...childProps} closeRequest={() => setClosing(true) }/>;
+            <WrappedComponent {...childProps} closeRequest={() => setClosing(true) }/>
         </div>);
     }
 }

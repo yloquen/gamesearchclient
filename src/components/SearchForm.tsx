@@ -24,7 +24,7 @@ export function SearchForm(props:any)
             <img onClick={() => window.location.href = "/" } id="logo" alt="" src="/assets/game_search_logo.png"/>
 
             <input id="search_form_input" className="search_bar_element" type="text" ref={inputRef}/>
-            <DefaultButton className="search_bar_element" onClick={() =>
+            <DefaultButton onClick={() =>
             {
                 dispatch(resetSearch());
                 navigate(`/search?q=${inputRef.current.value}`);

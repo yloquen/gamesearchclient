@@ -32,4 +32,4 @@ export type UseSearchParamsType = readonly [URLSearchParams, (nextInit: URLSearc
 } | undefined) => void];
 
 
-export type AppDispatch = typeof store.getState;
+export type AppDispatch = typeof store.dispatch;

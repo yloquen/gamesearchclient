@@ -1,6 +1,6 @@
 export default class C_Config
 {
-    public static SERVER_URL:string = "http://localhost:8080";
-    public static IMG_URL:string = "http://localhost/";
+    public static SERVER_URL:string = "http://192.168.0.152:8080";
+    public static IMG_URL:string = "http://192.168.0.152/";
 
 }

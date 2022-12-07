@@ -3,15 +3,14 @@ import { useEffect } from 'react';
 import {SearchForm} from "./components/SearchForm";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState, store} from "./store/store";
-import {LoginWindow} from "./components/LoginWindow";
+import {LoginWindow, RegisterWindow} from "./components/windows";
 import {Outlet} from "react-router-dom";
 import {resetSearch} from "./features/search/searchSlice";
+import WindowLayer from "./components/WindowLayer";
 
 
 const Main = () =>
 {
-    const loginWindow = useSelector((state:RootState) => state.user.loginWindow);
-
     const dispatch = useDispatch();
     useEffect(() =>
     {
@@ -23,9 +22,9 @@ const Main = () =>
 
     const comps =
     [
-        <SearchForm key={2}/>,
-        <Outlet key={3}/>,
-        loginWindow ? <LoginWindow key={1}/> : null
+        <SearchForm key={1}/>,
+        <Outlet key={2}/>,
+        <WindowLayer key={3}/>
     ];
 
     return (<div>
