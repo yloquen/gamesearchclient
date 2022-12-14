@@ -78,7 +78,7 @@ const PriceChartingItem = (props:{priceData:GameData}) =>
 
     const price = props.priceData.price ? (props.priceData.price * app.model.usdToBgn).toFixed(2) + "\u00A0лв." : "N.A.";
 
-    return (<div className="price_charting_item">
+    return (<div className="price_charting_item font_s">
         <a className = "price_charting_name" style={nameStyle} href={props.priceData.link} target="_blank">{name}</a>
         <div className = "price_charting_price" style={priceStyle}>{price}</div>
     </div>)

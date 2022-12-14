@@ -48,6 +48,10 @@ const userSlice = createSlice(
         showRegisterWindow(state, action:PayloadAction<boolean>)
         {
             state.registerWindow = action.payload;
+        },
+        showSearchHistoryWindow(state, action:PayloadAction<boolean>)
+        {
+            state.searchHistoryWindow = action.payload;
         }
     },
     extraReducers(builder)
@@ -98,5 +102,5 @@ const userSlice = createSlice(
     }
 });
 
-export const { showLoginWindow, showRegisterWindow } = userSlice.actions;
+export const { showLoginWindow, showRegisterWindow, showSearchHistoryWindow } = userSlice.actions;
 export default userSlice.reducer;

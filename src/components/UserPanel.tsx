@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {gsap, Linear} from "gsap";
-import Util from "../Util";
+import Util, {useFade} from "../Util";
 import {useDispatch, useSelector} from "react-redux";
 import {CSSProperties} from "react";
 import {RootState} from "../store/store";
@@ -14,7 +14,7 @@ import
 }
     from "../features/user/userSlice";
 import {useState} from "react";
-import {DefaultButton} from "./BasicComponents";
+import {DefaultButton, HeaderButton} from "./BasicComponents";
 import {AppDispatch} from "../types";
 import "/css/user_panel.sass";
 
@@ -33,8 +33,7 @@ export default function UserPanel(props:any)
         placeItems: "center",
         position:"absolute",
         right:"1.5vw",
-        padding:"1 vw",
-        fontSize:"calc(min(1.5vw, 1.25rem))"
+        padding:"1 vw"
     };
 
     const dispatch = useDispatch<AppDispatch>();
@@ -60,13 +59,13 @@ export default function UserPanel(props:any)
     else
     {
         content = [
-            <DefaultButton key={1}
-                onClick={() => {dispatch(showLoginWindow(true))}}>Login</DefaultButton>,
+            <HeaderButton key={1}
+                onClick={() => {dispatch(showLoginWindow(true))}}>Login</HeaderButton>,
 
             <span key={2}>&nbsp;&nbsp;&nbsp;</span>,
 
-            <DefaultButton key={3}
-                onClick={() => {dispatch(showRegisterWindow(true))}}>Sign up</DefaultButton>
+            <HeaderButton key={3}
+                onClick={() => {dispatch(showRegisterWindow(true))}}>{"Sign\u00a0up"}</HeaderButton>
         ];
     }
 
@@ -74,37 +73,43 @@ export default function UserPanel(props:any)
 }
 
 
+
+
+
 const UserMenu = (props:any) =>
 {
     const dispatch = useDispatch<AppDispatch>();
 
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const [isInitialized, setIsInitialized] = useState(false);
+    const [toggleCallback, fadeStyle, isOpen] = useFade();
 
-    const toggleMenu = () =>
+    const butExtraStyle:CSSProperties = { margin:"0.2rem"};
+    if (!isOpen)
     {
-        setMenuIsOpen(!menuIsOpen);
-        setIsInitialized(true);
-    };
-
-    const menuContainerStyle:CSSProperties =
-    {
-        animationName: menuIsOpen ? "fade_in" : "fade_out",
-        animationDuration: (isInitialized ? 0.25 : 0) + "s",
-        opacity: menuIsOpen ? "100%" : "0%"
-    };
-
-
-    const butStyle:CSSProperties =
-    {
-        margin:"0.2rem"
-    };
+        butExtraStyle.pointerEvents = "none";
+    }
 
     return (<div style={{backgroundColor:"#0ff", display:"flex", alignItems:"center", justifyContent:"center"}}>
-        <img alt="menu" src="./assets/menu_icon.png" onClick={toggleMenu} id="menu_button"/>
-            <div id="user_menu_container" style={menuContainerStyle}>
-                <DefaultButton onClick={()=>{ dispatch(makeSearchHistoryRequest()) }} style={butStyle}>Search history</DefaultButton>
-                <DefaultButton onClick={()=>{ dispatch(makeLogoutRequest()) }} style={butStyle}>Logout</DefaultButton>
+        <img alt="menu" src="./assets/menu_icon.png" onClick={toggleCallback} id="menu_button"/>
+            <div id="user_menu_container" style={fadeStyle}>
+                <DefaultButton onClick={()=>
+                {
+                    dispatch(makeSearchHistoryRequest());
+                    toggleCallback();
+                }}
+                    style={butExtraStyle}>
+                    Search history
+                </DefaultButton>
+
+                <DefaultButton
+                    onClick={()=>
+                    {
+                        dispatch(makeLogoutRequest());
+                        toggleCallback();
+                    }}
+                    style={butExtraStyle}>
+                    Logout
+                </DefaultButton>
+
             </div>
         </div>)
 };

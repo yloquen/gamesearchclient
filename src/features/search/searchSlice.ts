@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export const fetchSearchResults = createAsyncThunk('search/request', async (queryString:string) =>
 {
-    return app.controller.runQuery("GET", "/search", "q=" + escape(queryString));
+    return app.controller.runQuery("GET", "/search", "q=" + encodeURIComponent(queryString));
 });
 
 type SearchType =

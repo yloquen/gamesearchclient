@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useEffect } from 'react';
-import {SearchForm} from "./components/SearchForm";
+import {Header} from "./components/Header";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState, store} from "./store/store";
 import {LoginWindow, RegisterWindow} from "./components/windows";
@@ -22,7 +22,7 @@ const Main = () =>
 
     const comps =
     [
-        <SearchForm key={1}/>,
+        <Header key={1}/>,
         <Outlet key={2}/>,
         <WindowLayer key={3}/>
     ];

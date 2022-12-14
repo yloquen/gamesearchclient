@@ -1,6 +1,6 @@
 import {useSelector} from "react-redux";
 import {RootState} from "../store/store";
-import {RegisterWindow, LoginWindow} from "./windows";
+import {RegisterWindow, LoginWindow, SearchHistoryWindow} from "./windows";
 import * as React from "react";
 
 
@@ -14,6 +14,6 @@ export default (props:any) =>
         <>
             {loginWindow ? <LoginWindow key={1}/> : null}
             {registerWindow ? <RegisterWindow key={2}/> : null}
-            {/*{searchHistoryWindow ? <SearchHistoryWindow key={3}/> : null}*/}
+            {searchHistoryWindow ? <SearchHistoryWindow key={3}/> : null}
         </>);
 }

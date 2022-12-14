@@ -8,9 +8,10 @@ import { useNavigate } from "react-router-dom";
 import {useContext} from "react";
 import {GlobalContext} from "../index";
 import "/css/search_form.css";
-import {DefaultButton} from "./BasicComponents";
+import {DefaultButton, HeaderButton} from "./BasicComponents";
+import "/css/header.sass";
 
-export function SearchForm(props:any)
+export function Header(props:any)
 {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,18 +20,22 @@ export function SearchForm(props:any)
 
     const inputRef:any = React.createRef();
     return (
-        <div id="search_form_container">
+        <div id="header_container">
 
             <img onClick={() => window.location.href = "/" } id="logo" alt="" src="/assets/game_search_logo.png"/>
 
-            <input id="search_form_input" className="search_bar_element" type="text" ref={inputRef}/>
-            <DefaultButton onClick={() =>
-            {
-                dispatch(resetSearch());
-                navigate(`/search?q=${inputRef.current.value}`);
-            }}>
-                Search
-            </DefaultButton>
+            <div id="search_group">
+                <input className="default_input" id="search_input" type="text" ref={inputRef}/>
+                <HeaderButton
+                              onClick={() =>
+                              {
+                                  dispatch(resetSearch());
+                                  navigate(`/search?q=${inputRef.current.value}`);
+                              }}>
+                    Search
+                </HeaderButton>
+            </div>
+
             <UserPanel/>
         </div>
     );

@@ -2,6 +2,8 @@ import * as React from "react";
 import {LegacyRef, useEffect} from "react";
 import {gsap, Linear} from "gsap";
 import TweenTarget = gsap.TweenTarget;
+import {CSSProperties} from "react";
+import {useState} from "react";
 
 
 export default class Util
@@ -30,3 +32,25 @@ export default class Util
 
 
 }
+
+
+export const useFade = (delay:number = .25):[any, CSSProperties, boolean] =>
+{
+    const [menuIsOpen, setMenuIsOpen] = useState(false);
+    const [isInitialized, setIsInitialized] = useState(false);
+
+    const toggle = () =>
+    {
+        setMenuIsOpen(!menuIsOpen);
+        setIsInitialized(true);
+    };
+
+    const style:CSSProperties =
+    {
+        animationName: menuIsOpen ? "fade_in" : "fade_out",
+        animationDuration: (isInitialized ? delay : 0) + "s",
+        opacity: menuIsOpen ? "100%" : "0%"
+    };
+
+    return [toggle, style, menuIsOpen];
+};

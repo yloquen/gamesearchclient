@@ -1,20 +1,44 @@
+body
+  font-size: calc(min(1.25vw, 1.5rem))
 
-
-
+#close
+  position: absolute
+  right: 1vw
+  top: 1vh
+  cursor: pointer
 
 .default_button
   width: 9vw
-  height: 1.75vw
+  height: 2.25vw
+  font-size: calc(min(1.25vw, 1.5rem))
   font-family: "Rubik","sans-serif"
-  font-size: calc(min(1.25vw, 1rem))
   display: inline-flex
   align-items: center
   justify-content: center
   cursor: pointer
 
+#window_bg
+  position: fixed
+  left: 0
+  top: 0
+  width: 100vw
+  height: 100vh
+  background-color: #000
+  opacity: 20%
+
+.default_input
+  height: 2.25vw
+  font-size: calc(min(1.25vw, 1.5rem))
 
 @media screen and (max-aspect-ratio: 13/9)
-  .default_button
-    height: 4vw
-    font-size: calc(min(1.75vw, 1.5rem))
+  body
+    font-size: calc(min(3.0vw, 2.5rem))
 
+  .default_button
+    width: 12vw
+    height: 5.5vw
+    font-size: calc(min(3.0vw, 2.5rem))
+
+  .default_input
+    height: 5.5vw
+    font-size: calc(min(3.0vw, 2.5rem))

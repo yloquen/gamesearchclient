@@ -4,13 +4,18 @@ import {app} from "../App";
 import {CSSProperties, ForwardedRef, useContext, useDebugValue, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/store";
-import {makeLoginRequest, makeRegisterRequest, showLoginWindow, showRegisterWindow} from "../features/user/userSlice";
+import {makeLoginRequest, makeRegisterRequest, showLoginWindow, showRegisterWindow,
+    showSearchHistoryWindow } from "../features/user/userSlice";
 import "/css/login.sass";
 import {GlobalContext} from "../index";
 import {useEffect} from "react";
 import {resetSearch} from "../features/search/searchSlice";
 import {getFadeWrapper, getFadeWrapperFuncComp} from "../hoc/FadeWrapper";
-import {LabelledInput} from "./BasicComponents";
+import {DefaultButton, HeaderButton, LabelledInput} from "./BasicComponents";
+import {useFade} from "../Util";
+import "/css/history.sass";
+import "/css/common.sass";
+import C_Config from "../const/C_Config";
 
 
 
@@ -44,16 +49,15 @@ const LoginWinBase = (props:any) =>
 
     return (
         <>
-            <div id="login_bg"/>
+            <div id="window_bg"/>
             <div id="login">
                 <span id="close" onClick={ () => { props.closeRequest() }  }>[X]</span>
                 <div id="form">
                     <LabelledInput ref={emailRef} type="text" id={"loginEmail"}>E-mail</LabelledInput>
-
                     <br/>
                     <LabelledInput ref={passRef} type="password" id={"loginPass"}>Password</LabelledInput>
                     <br/>
-                    <button type="submit" onClick={onSubmit}>Submit</button>
+                    <HeaderButton onClick={onSubmit}>Submit</HeaderButton>
                 </div>
             </div>
         </>)
@@ -107,8 +111,8 @@ const RegisterWinBase = (props:any) =>
 
     return (
         <>
-            <div id="login_bg"/>
-            <div id="login">
+            <div id="window_bg"/>
+            <div id="register">
                 <span id="close" onClick={ () => { props.closeRequest() }  }>[X]</span>
                 <div id="form">
                     <LabelledInput onChange={validateInput} ref={emailRef} isValid={emailValid}
@@ -124,5 +128,33 @@ const RegisterWinBase = (props:any) =>
                 </div>
             </div>
         </>)
-}
+};
+
+
+export const SearchHistoryWindow = (props:any) =>
+{
+    const dispatch = useDispatch();
+
+    const [toggleCallback, fadeStyle] = useFade(1);
+
+    const urlPrefix = C_Config.URL_BASE + "search?q=";
+
+    const history = useSelector((state:RootState) => state.user.searchHistory);
+    const historyItems = history.map(e => <><a href={urlPrefix + encodeURIComponent(e)}>{e}</a><br/></>);
+
+    return (
+        <>
+            <div id="window_bg" style={fadeStyle}/>
+
+            <div id="win_bg" style={{display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center"}}>
+                <span id="close" onClick={ () =>
+                {
+                    dispatch(showSearchHistoryWindow(false))
+                }  }>[X]</span>
+                <div>
+                    {historyItems}
+                </div>
+            </div>
+        </>);
+};
 

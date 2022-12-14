@@ -9,7 +9,14 @@ export function DefaultButton(props:{onClick:MouseEventHandler<HTMLButtonElement
     return (<button className={"default_button"} onClick={props.onClick} style={props.style}>
         {props.children}
     </button>);
+}
 
+
+export function HeaderButton(props:{onClick:MouseEventHandler<HTMLButtonElement>, children:string, style?:CSSProperties})
+{
+    return (<button className={"default_button"} onClick={props.onClick} style={props.style}>
+        {props.children}
+    </button>);
 }
 
 
@@ -54,7 +61,7 @@ export const LabelledInput = React.forwardRef((props:LabelledInputPropsType, ref
             <span className="label">
                 {props.children}
             </span>
-        <input ref={ref} type={props.type} className="text_input" id={props.id} onChange={props?.onChange}/>
+        <input ref={ref} type={props.type} className="default_input text_input" id={props.id} onChange={props?.onChange}/>
         {validImg}
     </label>);
 });

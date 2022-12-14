@@ -24,7 +24,6 @@ const WikiText = (props) =>
         display:"flex",
         flexDirection:"row",
         paddingTop:"0.3vw",
-        fontSize:"min(1.5vw, 0.75rem)",
         width:"100%"
     };
 
@@ -40,7 +39,7 @@ const WikiText = (props) =>
         backgroundColor:"#f5f8ff"
     };
 
-    return <div style={containerStyle}>
+    return <div style={containerStyle} className="font_s">
         <div style={nameStyle}>{props.info.name}</div>
         <div style={valueStyle}>{props.info.value}</div>
     </div>;
