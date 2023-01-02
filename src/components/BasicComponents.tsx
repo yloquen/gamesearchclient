@@ -4,17 +4,10 @@ import "/css/common.sass";
 
 
 
-export function DefaultButton(props:{onClick:MouseEventHandler<HTMLButtonElement>, children:string, style?:CSSProperties})
+export function DefaultButton(props:{onClick:MouseEventHandler<HTMLButtonElement>, children:string, style?:CSSProperties, className?:string})
 {
-    return (<button className={"default_button"} onClick={props.onClick} style={props.style}>
-        {props.children}
-    </button>);
-}
-
-
-export function HeaderButton(props:{onClick:MouseEventHandler<HTMLButtonElement>, children:string, style?:CSSProperties})
-{
-    return (<button className={"default_button"} onClick={props.onClick} style={props.style}>
+    const butClass = props.className ? "default_button " + props.className : "default_button";
+    return (<button className={butClass} onClick={props.onClick} style={props.style}>
         {props.children}
     </button>);
 }

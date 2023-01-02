@@ -23,6 +23,12 @@ export const makeSearchHistoryRequest = createAsyncThunk('user/search_history', 
     return app.controller.runQuery("GET", "/search_history");
 });
 
+export const addFavoriteRequest = createAsyncThunk('user/favorite', async (id:number) =>
+{
+    console.log(id);
+    return app.controller.runQuery("POST", "/favorite", undefined, JSON.stringify({id:id}));
+});
+
 
 const initialState =
 {
@@ -98,7 +104,10 @@ const userSlice = createSlice(
                     state.searchHistoryWindow = true;
                 }
             })
+            .addCase(addFavoriteRequest.fulfilled, (state:any, action:any) =>
+            {
 
+            })
     }
 });
 

@@ -15,7 +15,8 @@ module.exports = {
     devtool: 'source-map',
     devServer: {
         static: './dist',
-        historyApiFallback:true
+        historyApiFallback: true,
+        hot: true
     },
     module: {
         rules:

@@ -34,23 +34,80 @@ export default class Util
 }
 
 
-export const useFade = (delay:number = .25):[any, CSSProperties, boolean] =>
+export const useFade = (initialState:boolean, delay:number = 2, initialized:boolean = false):[any, CSSProperties, boolean] =>
 {
-    const [menuIsOpen, setMenuIsOpen] = useState(false);
-    const [isInitialized, setIsInitialized] = useState(false);
+    const [isVisible, setIsVisible] = useState(initialState);
+    const [isInitialized, setIsInitialized] = useState(initialized);
+    const [onCompleteCallback, setOnCompleteCallback] = useState(undefined);
 
-    const toggle = () =>
+    const toggle = (onCompleteCallback:Function = undefined) =>
     {
-        setMenuIsOpen(!menuIsOpen);
+        setIsVisible(!isVisible);
         setIsInitialized(true);
+        useEffect(()=>
+        {
+            gsap.delayedCall(2, onCompleteCallback);
+        });
     };
 
     const style:CSSProperties =
     {
-        animationName: menuIsOpen ? "fade_in" : "fade_out",
-        animationDuration: (isInitialized ? delay : 0) + "s",
-        opacity: menuIsOpen ? "100%" : "0%"
+        opacity: isVisible ? "100%" : "0%"
     };
 
-    return [toggle, style, menuIsOpen];
+    if (isInitialized)
+    {
+        style.animationName = isVisible ? "fade_in" : "fade_out";
+        style.animationDuration = delay + "s";
+    }
+
+/*
+    if (onCompleteCallback)
+    {
+        useEffect(() =>
+        {
+            gsap.delayedCall(delay, () =>
+            {
+                alert("HEEHOO");
+                onCompleteCallback()
+            });
+        });
+    }*/
+
+    return [toggle, style, isVisible];
+};
+
+
+export const useFade2 = (duration:number, initialState:boolean, initialized:boolean):any =>
+{
+    const [isVisible, setIsVisible] = useState(initialState);
+    const [isInitialized, setIsInitialized] = useState(initialized);
+
+    const style:CSSProperties =
+    {
+        opacity: isVisible ? "100%" : "0%"
+    };
+
+    if (isInitialized)
+    {
+        style.animationName = isVisible ? "fade_in" : "fade_out";
+        style.animationDuration = duration + "s";
+    }
+
+    const setFade = (newState:boolean, callback?:Function) =>
+    {
+        setIsVisible(newState);
+        setIsInitialized(true);
+        if (callback)
+        {
+            gsap.delayedCall(duration, callback);
+        }
+    };
+
+    const toggleFade = () =>
+    {
+        setFade(!isVisible);
+    };
+
+    return [style, setFade, toggleFade];
 };

@@ -75,7 +75,7 @@ const WikiData = (props:any) =>
         return <WikiText key={index} info={info}/>;
     });
 
-    return (<div className="results_side_container bordered_field">
+    return wikiData ? (<div className="results_side_container bordered_field">
         <a href={wikiData.link} target="_blank">
             <img style={wikiLogoStyle} src="./assets/providers/wikipedia.png"/>
         </a>
@@ -83,7 +83,7 @@ const WikiData = (props:any) =>
             <img style={wikiImgStyle} src={C_Config.IMG_URL + wikiData.imgURL}/>
             {textResults}
         </div>
-    </div>)
+    </div>) : null
 };
 
 

@@ -10,13 +10,34 @@ html
     width:calc(100vw - (100vw - 100%));
     font-family:"Rubik","sans-serif";
     font-weight:300;
-    min-height: 100%;
-    background:linear-gradient(180deg, #c0d3ff 0%, #a1b6e6 100%);
+}
+
+#background
+{
+    position: fixed;
+    width:calc(100vw - (100vw - 100%));
+    height: 100%;
+    background:linear-gradient(0deg, #e6e675 10%, #5be5e5 50%);
+    z-index: -1;
 }
 
 body
 {
     margin:0;
+}
+
+.break_line
+{
+    -ms-word-break: break-all;
+    word-break: break-all;
+
+    /* Non standard for webkit */
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }
 
 
@@ -82,6 +103,19 @@ body
     background-color: #ffffff;
     width: 96%;
     aspect-ratio: 4.5;
+}
+
+
+.result_container:hover .fav_but
+{
+    position:absolute;
+    height: 18%;
+    aspect-ratio:1;
+    margin: 2%;
+    background-color: #ff0;
+    right: 0;
+    top: 0;
+    cursor: pointer;
 }
 
 

@@ -42,15 +42,20 @@ const PriceChartingList = (props:any) =>
         paddingBottom:"1vw"
     };
 
-    const priceData = useSelector((state:RootState) => state.search.searchResults?.priceData);
+    const priceData = useSelector((state:RootState) => state.search.searchResults?.priceData) || [];
 
-    const results = priceData.map((priceData:GameData, index:number) =>
+    const results = priceData?.map((priceData:GameData, index:number) =>
     {
         return <PriceChartingItem key={index} priceData={priceData}/>
     });
 
+    const searchQuery = useSelector((state:RootState) => state.search.query);
+    const priceChartingLink = `https://www.pricecharting.com/search-products?type=prices&q=${searchQuery}&go=Go`
+
     return (<div className="results_side_container bordered_field">
-        <img style={imgStyle} src="./assets/providers/pricecharting.png"/>
+        <a href={priceChartingLink} target="_blank">
+            <img style={imgStyle} src="./assets/providers/pricecharting.png"/>
+        </a>
         {results}
     </div>)
 };

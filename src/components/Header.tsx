@@ -1,24 +1,41 @@
 import * as React from "react";
 import {app} from "../App";
-import {CSSProperties, LegacyRef, useState} from "react";
-import {resetSearch} from "../features/search/searchSlice";
+import {CSSProperties, LegacyRef, Ref, useEffect, useState} from "react";
+import {resetSearch, startSearch} from "../features/search/searchSlice";
 import {useDispatch} from "react-redux";
 import UserPanel from "./UserPanel";
 import { useNavigate } from "react-router-dom";
 import {useContext} from "react";
-import {GlobalContext} from "../index";
 import "/css/search_form.css";
-import {DefaultButton, HeaderButton} from "./BasicComponents";
+import {DefaultButton} from "./BasicComponents";
 import "/css/header.sass";
 
 export function Header(props:any)
 {
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const context = useContext(GlobalContext);
+    const inputRef:Ref<HTMLInputElement> = React.createRef();
 
-    const inputRef:any = React.createRef();
+    const onClick = () =>
+    {
+        dispatch(resetSearch());
+        navigate(`/search?q=${inputRef.current.value}`);
+    };
+
+    useEffect(() =>
+    {
+        inputRef.current.addEventListener("keypress", (event:KeyboardEvent) =>
+        {
+            if (event.key === "Enter")
+            {
+                event.preventDefault();
+                onClick();
+            }
+        });
+    },[]);
+
     return (
         <div id="header_container">
 
@@ -26,14 +43,9 @@ export function Header(props:any)
 
             <div id="search_group">
                 <input className="default_input" id="search_input" type="text" ref={inputRef}/>
-                <HeaderButton
-                              onClick={() =>
-                              {
-                                  dispatch(resetSearch());
-                                  navigate(`/search?q=${inputRef.current.value}`);
-                              }}>
+                <DefaultButton onClick={() => onClick()}>
                     Search
-                </HeaderButton>
+                </DefaultButton>
             </div>
 
             <UserPanel/>

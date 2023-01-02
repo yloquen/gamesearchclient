@@ -26,10 +26,14 @@ export default class Controller
             {
                 if (this.status >= 200 && this.status < 300)
                 {
-                    let resp = {};
+                    let resp;
                     try
                     {
-                        resp = JSON.parse(xhr.response)
+                        resp = JSON.parse(xhr.response);
+                    }
+                    catch
+                    {
+                        resp = {};
                     }
                     finally
                     {

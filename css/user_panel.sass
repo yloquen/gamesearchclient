@@ -1,17 +1,44 @@
+#user_panel_root
+  display: flex
+  flex-direction: row
+  place-items: center
+  position: absolute
+  right: 1.5vw
+  padding: 1vw
+
+
+#user_menu_root
+  display: flex
+  align-items: center
+  justify-content: center
+
+
 #user_menu_container
   position: absolute
   top: 100%
-  right: 0%
+  right: 0
   display: flex
   flex-direction: column
   align-content: center
   padding: 1vw
+  background-color: rgba(0,0,0,0.2)
+  border: rgba(0,0,0,0.2) solid 0.1vw
 
-#menu_button
+
+#menu_toggle_button
   cursor: pointer
-  height: 2vh
+  height: 2.5vh
+
+
+.user_menu_button
+  margin: 0.2rem
+  width: 11vw
+
 
 @media screen and (max-aspect-ratio: 13/9)
   #menu_button
     cursor: pointer
     height: 3vh
+
+  .user_menu_button
+    width: 28vw
