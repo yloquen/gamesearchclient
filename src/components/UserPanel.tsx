@@ -2,7 +2,7 @@ import * as React from 'react'
 import {gsap, Linear} from "gsap";
 import Util, {useFade, useFade2} from "../Util";
 import {useDispatch, useSelector} from "react-redux";
-import {CSSProperties, useRef} from "react";
+import {CSSProperties, useEffect, useRef} from "react";
 import {AppDispatch, RootState, useAppDispatch} from "../store/store";
 
 import
@@ -28,11 +28,14 @@ export default function UserPanel(props:any)
     const username = useSelector((state:RootState) => state.user.username);
 
     const dispatch = useAppDispatch();
-    if (!init)
+    useEffect(() =>
     {
-        dispatch(makeLoginRequest({}));
-        setInit(true);
-    }
+        if (!init)
+        {
+            setInit(true);
+            dispatch(makeLoginRequest({}));
+        }
+    });
 
     let content;
     if (loggedIn)

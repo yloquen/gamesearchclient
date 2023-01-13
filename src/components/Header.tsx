@@ -1,6 +1,6 @@
 import * as React from "react";
-import {app} from "../App";
-import {CSSProperties, LegacyRef, Ref, useEffect, useState} from "react";
+
+import {CSSProperties, LegacyRef, Ref, useEffect, useRef, useState} from "react";
 import {resetSearch, startSearch} from "../features/search/searchSlice";
 import {useDispatch} from "react-redux";
 import UserPanel from "./UserPanel";
@@ -9,6 +9,7 @@ import {useContext} from "react";
 import "/css/search_form.css";
 import {DefaultButton} from "./BasicComponents";
 import "/css/header.sass";
+import TestElement from "../TestElement";
 
 export function Header(props:any)
 {
@@ -16,12 +17,17 @@ export function Header(props:any)
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const inputRef:Ref<HTMLInputElement> = React.createRef();
+    const inputRef:Ref<HTMLInputElement> = useRef();
 
     const onClick = () =>
     {
-        dispatch(resetSearch());
-        navigate(`/search?q=${inputRef.current.value}`);
+        const searchString = inputRef.current.value;
+        if (searchString.length > 0)
+        {
+            navigate(`/search?q=${inputRef.current.value}`);
+            dispatch(resetSearch());
+            console.log("Search for " + searchString);
+        }
     };
 
     useEffect(() =>
@@ -39,7 +45,7 @@ export function Header(props:any)
     return (
         <div id="header_container">
 
-            <img onClick={() => window.location.href = "/" } id="logo" alt="" src="/assets/game_search_logo.png"/>
+            <img onClick={() => navigate('/') } id="logo" alt="" src="/assets/game_search_logo.png"/>
 
             <div id="search_group">
                 <input className="default_input" id="search_input" type="text" ref={inputRef}/>

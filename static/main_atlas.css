@@ -1,0 +1,20 @@
+/*
+   ---------------------------
+   created with Free texture packer v0.6.7
+   http://free-tex-packer.com
+   ---------------------------
+*/
+.assets/providers/wikipedia.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -0px -0px;width:534px;height:160px; }
+.assets/providers/pricecharting.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -534px -0px;width:254px;height:78px; }
+.assets/game_search_logo.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -788px -0px;width:218px;height:65px; }
+.assets/no_product_image.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -1006px -0px;width:200px;height:200px; }
+.assets/providers/olx.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -788px -65px;width:179px;height:63px; }
+.assets/fav_true.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -967px -65px;width:29px;height:29px; }
+.assets/fav_false.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -967px -94px;width:27px;height:27px;margin-left:1px;margin-top:1px }
+.assets/providers/ozone.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -534px -78px;width:179px;height:63px; }
+.assets/providers/technopolis.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -713px -78px;width:63px;height:179px;transform-origin:89.5px 31.5px;-moz-transform-origin:89.5px 31.5px;-ms-transform-origin:89.5px 31.5px;-webkit-transform-origin:89.5px 31.5px;-o-transform-origin:89.5px 31.5px;transform:rotate(-90deg);-moz-transform:rotate(-90deg);-ms-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);-o-transform:rotate(-90deg); }
+.assets/loading_circle.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -534px -141px;width:100px;height:100px;margin-left:10px;margin-top:10px }
+.assets/menu_icon.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -634px -141px;width:49px;height:44px; }
+.assets/green_check.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -634px -185px;width:40px;height:40px; }
+.assets/red_cross.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -634px -225px;width:40px;height:40px; }
+.assets/video_toggle.png { display:inline-block;overflow:hidden;background:url(main_atlas.png) no-repeat -776px -128px;width:80px;height:80px; }

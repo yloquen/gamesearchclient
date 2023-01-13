@@ -7,7 +7,8 @@ export type GameData =
     provider:string,
     link:string,
     img:string,
-    id?:number
+    id?:number,
+    vendor_id:string
 };
 
 

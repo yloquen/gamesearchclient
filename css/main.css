@@ -17,7 +17,7 @@ html
     position: fixed;
     width:calc(100vw - (100vw - 100%));
     height: 100%;
-    background:linear-gradient(0deg, #e6e675 10%, #5be5e5 50%);
+    background: linear-gradient(0deg, #a883e0 10%, #d5c2f2 50%);
     z-index: -1;
 }
 
@@ -96,71 +96,6 @@ body
 }
 
 
-.result_container
-{
-    margin-bottom: 1vw;
-    position: relative;
-    background-color: #ffffff;
-    width: 96%;
-    aspect-ratio: 4.5;
-}
-
-
-.result_container:hover .fav_but
-{
-    position:absolute;
-    height: 18%;
-    aspect-ratio:1;
-    margin: 2%;
-    background-color: #ff0;
-    right: 0;
-    top: 0;
-    cursor: pointer;
-}
-
-
-.result_image
-{
-    height:70%;
-    left:10%;
-    top:50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-}
-
-.result_name
-{
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    height:80%;
-    left:20%;
-    top:50%;
-    width:54%;
-    transform: translate(0%, -50%);
-}
-
-.result_price
-{
-    position: absolute;
-    right: 5%;
-    top: 50%;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
-    font-weight: 600;
-    color:#555;
-    transform: translateY(-50%);
-}
-
-.result_provider
-{
-    width:7vw;
-    background-color: purple;
-}
-
 .side_panel
 {
     display:flex;
@@ -172,13 +107,13 @@ body
 
 .price_charting_item
 {
-    background-color: #ebedf2;
+    background-color: #f0f3fa;
     display:flex;
     flex-direction:row;
     padding:0.075vw;
     padding-left:0.2vw;
     padding-right:0.2vw;
-    margin-bottom:1vw;
+    margin-bottom:.6vw;
 }
 
 .font_s
@@ -234,15 +169,5 @@ body
         align-items: center;
     }
 
-    .result_container
-    {
-        width:74vw;
-        height:16vw;
-    }
-
-    .result_provider
-    {
-        width:12vw;
-    }
 
 }

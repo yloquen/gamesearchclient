@@ -1,0 +1,28 @@
+@keyframes scale_up
+  0%
+    width: 100%
+  100%
+    width: 250%
+
+@keyframes scale_down
+  0%
+    width: 250%
+  100%
+    width: 100%
+
+#walkthrough_video_container
+  margin-top: 1vw
+  width: 90%
+  aspect-ratio: 16/9
+
+#walkthrough_video_resize_but
+  position: absolute
+  z-index: 2
+  opacity: .8
+  height: 4%
+  visibility: hidden
+
+#walkthrough_video_container:hover #walkthrough_video_resize_but
+  visibility: visible
+  cursor: pointer
+  margin: 0.25vw

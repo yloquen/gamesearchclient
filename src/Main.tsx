@@ -8,7 +8,7 @@ import {Outlet} from "react-router-dom";
 import {resetSearch, startSearch} from "./features/search/searchSlice";
 import WindowLayer from "./components/WindowLayer";
 import LoadingCircle from "./components/LoadingCircle";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Background from "./components/Background";
 
 
@@ -29,15 +29,6 @@ const Main = () =>
             dispatch(resetSearch());
         });
     }, []);
-
-/*    useEffect(() =>
-    {
-        if (query)
-        {
-            //dispatch(startSearch(query));
-            // navigate(`/search?q=${query}`);
-        }
-    }, [query]);*/
 
     const comps =
     [

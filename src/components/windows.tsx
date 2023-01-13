@@ -1,6 +1,6 @@
 import * as React from "react";
 import {GameData} from "../types";
-import {app} from "../App";
+
 import {CSSProperties, ForwardedRef, useContext, useDebugValue, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AppDispatch, RootState, useAppDispatch} from "../store/store";

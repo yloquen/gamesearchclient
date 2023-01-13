@@ -1,10 +1,11 @@
 import {AsyncThunkAction, createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {GameData, WikiData} from "../../types";
-import {app} from "../../App";
+import {runQuery} from "../../Comm";
+
 
 export const fetchSearchResults = createAsyncThunk('search/request', async (queryString:string) =>
 {
-    return app.controller.runQuery("GET", "/search", "q=" + encodeURIComponent(queryString)) as Promise<SearchResultsType>;
+    return runQuery("GET", "/search", "q=" + encodeURIComponent(queryString)) as Promise<SearchResultsType>;
 });
 
 type SearchType =
@@ -44,12 +45,9 @@ const searchSlice = createSlice(
                 state.searchResults = undefined;
                 state.query = "";
             },
-            startSearch(state:SearchType, action:PayloadAction<string>)
+            startSearch(state:SearchType)
             {
-                state.loading = false;
-                state.loaded = false;
-                state.searchResults = undefined;
-                state.query = encodeURIComponent(action.payload);
+                state.loading = true;
             }
         },
         extraReducers(builder)

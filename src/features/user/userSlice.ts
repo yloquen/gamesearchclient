@@ -1,32 +1,32 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {GameData, WikiData} from "../../types";
-import {app} from "../../App";
+
 import {fetchSearchResults} from "../search/searchSlice";
+import {runQuery} from "../../Comm";
 
 export const makeLoginRequest = createAsyncThunk('user/login', async (loginData:any) =>
 {
-    return app.controller.runQuery("POST", "/login", undefined, JSON.stringify(loginData));
+    return runQuery("POST", "/login", undefined, JSON.stringify(loginData));
 });
 
 export const makeRegisterRequest = createAsyncThunk('user/register', async (registerData:any) =>
 {
-    return app.controller.runQuery("POST", "/register", undefined, JSON.stringify(registerData));
+    return runQuery("POST", "/register", undefined, JSON.stringify(registerData));
 });
 
 export const makeLogoutRequest = createAsyncThunk('user/logout', async () =>
 {
-    return app.controller.runQuery("GET", "/logout");
+    return runQuery("GET", "/logout");
 });
 
 export const makeSearchHistoryRequest = createAsyncThunk('user/search_history', async () =>
 {
-    return app.controller.runQuery("GET", "/search_history");
+    return runQuery("GET", "/search_history");
 });
 
 export const addFavoriteRequest = createAsyncThunk('user/favorite', async (id:number) =>
 {
-    console.log(id);
-    return app.controller.runQuery("POST", "/favorite", undefined, JSON.stringify({id:id}));
+    return runQuery("POST", "/favorite", undefined, JSON.stringify({id:id}));
 });
 
 

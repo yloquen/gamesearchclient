@@ -1,6 +1,6 @@
 import * as React from "react";
 import {GameData} from "../types";
-import {app} from "../App";
+
 import {CSSProperties} from "react";
 import {useSelector} from "react-redux";
 import {RootState} from "../store/store";
@@ -23,25 +23,33 @@ const WikiText = (props) =>
     {
         display:"flex",
         flexDirection:"row",
-        paddingTop:"0.3vw",
+        paddingTop:"0.6vw",
         width:"100%"
     };
 
     const nameStyle =
     {
         width:"40%",
-        backgroundColor:"#f5f8ff"
+        backgroundColor:"#f0f3fa"
     };
 
     const valueStyle =
     {
         width:"60%",
-        backgroundColor:"#f5f8ff"
+        backgroundColor:"#f0f3fa"
     };
+
+    const separator = "®";
+
+    const values = props.info.value.split(separator);
+    const wikiTexts = values.map((textLine,i) =>
+        <React.Fragment key={i}>
+            {textLine}{i<values.length-1 ? <br/> : null}
+        </React.Fragment>);
 
     return <div style={containerStyle} className="font_s">
         <div style={nameStyle}>{props.info.name}</div>
-        <div style={valueStyle}>{props.info.value}</div>
+        <div style={valueStyle}>{wikiTexts}</div>
     </div>;
 };
 
@@ -77,13 +85,15 @@ const WikiData = (props:any) =>
 
     return wikiData ? (<div className="results_side_container bordered_field">
         <a href={wikiData.link} target="_blank">
-            <img style={wikiLogoStyle} src="./assets/providers/wikipedia.png"/>
+            <img alt="wikipedia" style={wikiLogoStyle} src="./assets/providers/wikipedia.png"/>
         </a>
         <div style={infoBoxStyle}>
-            <img style={wikiImgStyle} src={C_Config.IMG_URL + wikiData.imgURL}/>
+            <a href={wikiData.link} target="_blank">
+                <img alt="" style={wikiImgStyle} src={C_Config.IMG_URL + wikiData.imgURL}/>
+            </a>
             {textResults}
         </div>
-    </div>) : null
+    </div>) : null;
 };
 
 
