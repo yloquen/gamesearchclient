@@ -8,7 +8,7 @@ export type GameData =
     link:string,
     img:string,
     id?:number,
-    vendor_id:string
+    isFavorite:boolean
 };
 
 

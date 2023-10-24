@@ -5,6 +5,7 @@ import C_Config from "../const/C_Config";
 import {addFavoriteRequest} from "../features/user/userSlice";
 import * as React from "react";
 import "/css/search_result.sass";
+import {useAppDispatch} from "../store/store";
 
 export function SearchResult(props:{result:GameData, index:number})
 {
@@ -12,9 +13,13 @@ export function SearchResult(props:{result:GameData, index:number})
 
     const result:GameData = props.result;
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const imgUrl = result.img?.length > 0 ? (C_Config.IMG_URL + result.img) : "./assets/no_product_image.png";
+
+    const isFavorite = Boolean(result.isFavorite);
+    const favButClass = "fav_but_" + isFavorite;
+    const favButImg = `./assets/fav_${isFavorite}.png`;
 
     return (<div ref={ref} className="result_container bordered_field break_line">
         <img className="result_image" src={imgUrl}/>
@@ -26,9 +31,9 @@ export function SearchResult(props:{result:GameData, index:number})
             <div style={{height:"0.25vw"}}/>
             <img className="result_provider" src={"./assets/providers/" + result.provider.toLocaleLowerCase() + ".png"} />
         </div>
-        <img alt="" src="./assets/fav_false.png" className="fav_but" onClick={() =>
+        <img alt="" src={favButImg} className={favButClass}  onClick={() =>
         {
-            dispatch(addFavoriteRequest(result.id) as any);
+            dispatch(addFavoriteRequest({id:result.id, isFavorite:!result.isFavorite}));
         }}/>
     </div>);
 }

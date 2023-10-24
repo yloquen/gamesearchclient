@@ -4,15 +4,18 @@ import Util, {useFade, useFade2} from "../Util";
 import {useDispatch, useSelector} from "react-redux";
 import {CSSProperties, useEffect, useRef} from "react";
 import {AppDispatch, RootState, useAppDispatch} from "../store/store";
+import { useNavigate } from "react-router-dom";
 
 import
 {
+    getFavoritesRequest,
     makeLoginRequest,
     makeLogoutRequest,
     makeRegisterRequest,
     makeSearchHistoryRequest,
     showLoginWindow,
-    showRegisterWindow
+    showRegisterWindow,
+    resetLoadingFavorites
 } from "../features/user/userSlice";
 
 import {useState} from "react";
@@ -74,8 +77,8 @@ const UserMenu = (props:any) =>
 
     const [fadeStyle, setFade, toggleFade] = useFade2(.25, false, false);
 
-    const butExtraStyle:CSSProperties = {};
-/*    if (!isOpen)
+    /*
+    if (!isOpen)
     {
         butExtraStyle.pointerEvents = "none";
     }
@@ -90,32 +93,39 @@ const UserMenu = (props:any) =>
             }
         });
         *!/
-    }*/
+    }
+    */
+    const navigate = useNavigate();
+
+    const buttons = [
+        { label : "Search History", onClick:() => { dispatch(makeSearchHistoryRequest()) }},
+        { label : "Favorites", onClick:() =>
+            {
+                dispatch(resetLoadingFavorites());
+                navigate(`/favorites`);
+            }},
+        { label : "Logout", onClick:() => { dispatch(makeLogoutRequest()) }}
+    ]
+        .map((butData, i) => createUserMenuButton(butData, i));
 
     return (<div id="user_menu_root" ref={rootRef}>
         <img alt="menu" src="./assets/menu_icon.png" onClick={()=>{toggleFade()}} id="menu_toggle_button"/>
             <div id="user_menu_container" style={fadeStyle}>
-                <DefaultButton onClick={()=>
-                {
-                    dispatch(makeSearchHistoryRequest());
-                    // toggleCallback();
-                }}
-                    className="user_menu_button"
-                    style={butExtraStyle}>
-                    Search history
-                </DefaultButton>
-
-                <DefaultButton
-                    onClick={()=>
-                    {
-                        dispatch(makeLogoutRequest());
-                        // toggleCallback();
-                    }}
-                    className="user_menu_button"
-                    style={butExtraStyle}>
-                    Logout
-                </DefaultButton>
-
+                {buttons}
             </div>
         </div>)
 };
+
+
+const createUserMenuButton = (butData:{label:string, onClick:() => void}, index:number) =>
+{
+    const butExtraStyle:CSSProperties = {};
+
+    return <DefaultButton
+        onClick={butData.onClick}
+        className="user_menu_button"
+        key={index}
+        style={butExtraStyle}>
+        {butData.label}
+    </DefaultButton>
+}

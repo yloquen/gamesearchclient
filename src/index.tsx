@@ -10,6 +10,7 @@ import {SearchResults} from "./components/SearchResults";
 import {gsap} from "gsap";
 import Root from "./Root";
 
+console.log("process.env.NODE_ENV: " + process.env.NODE_ENV);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

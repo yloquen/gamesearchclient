@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "build_prod": "webpack --config webpack.prod.config.js",
+    "deploy": "aws\\pscp -r -i aws\\LightsailDefaultKey-eu-central-1.ppk ./dist/*.* bitnami@35.156.32.98:htdocs"
   },
   "author": "",
   "license": "ISC",

@@ -1,5 +1,6 @@
 import C_Config from "./const/C_Config";
-
+import { store } from "./store/store";
+import { setLoginState } from "./features/user/userSlice";
 
 export async function runQuery(method:string, path:string, query:string=undefined, body:string=undefined)
 {
@@ -29,7 +30,23 @@ export async function runQuery(method:string, path:string, query:string=undefine
                 }
                 finally
                 {
-                    resolve(resp);
+                    if (store.getState().user.loggedIn !== resp.loggedIn)
+                    {
+                        store.dispatch(setLoginState(resp.loggedIn));
+                    }
+
+                    if (!resp.data)
+                    {
+                        reject("Response has no data");
+                    }
+                    else if (resp.data.error)
+                    {
+                        reject("Response error : " + JSON.stringify(resp.data.error));
+                    }
+                    else
+                    {
+                        resolve(resp.data);
+                    }
                 }
             }
             else

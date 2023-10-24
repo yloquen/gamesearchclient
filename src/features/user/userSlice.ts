@@ -24,9 +24,14 @@ export const makeSearchHistoryRequest = createAsyncThunk('user/search_history', 
     return runQuery("GET", "/search_history");
 });
 
-export const addFavoriteRequest = createAsyncThunk('user/favorite', async (id:number) =>
+export const addFavoriteRequest = createAsyncThunk('user/set_favorite', async (data:any) =>
 {
-    return runQuery("POST", "/favorite", undefined, JSON.stringify({id:id}));
+    return runQuery("POST", "/set_favorite", undefined, JSON.stringify({id:data.id, isFavorite:data.isFavorite}));
+});
+
+export const getFavoritesRequest = createAsyncThunk('user/favorites', async () =>
+{
+    return runQuery("GET", "/favorites");
 });
 
 
@@ -37,9 +42,13 @@ const initialState =
     searchHistoryWindow:false,
     loggedIn:false,
     username:"",
-    searchHistory:[]
+    searchHistory:[],
+    loadingFavorites:false,
+    loadedFavorites:false,
+    favorites:[]
 };
 
+type UserState = typeof initialState;
 
 const userSlice = createSlice(
 {
@@ -58,6 +67,19 @@ const userSlice = createSlice(
         showSearchHistoryWindow(state, action:PayloadAction<boolean>)
         {
             state.searchHistoryWindow = action.payload;
+        },
+        setLoginState(state, action:PayloadAction<boolean>)
+        {
+            state.loggedIn = action.payload;
+        },
+        resetLoadingFavorites(state)
+        {
+            state.loadingFavorites = false;
+            state.loadedFavorites = false;
+        },
+        startLoadingFavorites(state)
+        {
+            state.loadingFavorites = true;
         }
     },
     extraReducers(builder)
@@ -104,12 +126,24 @@ const userSlice = createSlice(
                     state.searchHistoryWindow = true;
                 }
             })
-            .addCase(addFavoriteRequest.fulfilled, (state:any, action:any) =>
+            .addCase(addFavoriteRequest.fulfilled, (state:UserState, action:any) =>
             {
 
+            })
+            .addCase(getFavoritesRequest.pending, (state:UserState, action:any) =>
+            {
+                state.loadingFavorites = true;
+            })
+            .addCase(getFavoritesRequest.fulfilled, (state:UserState, action:PayloadAction<any>) =>
+            {
+                state.favorites = action.payload;
+                state.loadingFavorites = false;
+                state.loadedFavorites = true;
             })
     }
 });
 
-export const { showLoginWindow, showRegisterWindow, showSearchHistoryWindow } = userSlice.actions;
+export const { showLoginWindow, showRegisterWindow, showSearchHistoryWindow,
+    setLoginState, startLoadingFavorites, resetLoadingFavorites } = userSlice.actions;
+
 export default userSlice.reducer;

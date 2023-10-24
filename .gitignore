@@ -16,3 +16,5 @@ build
 static/player*.html
 static/index.html
 static/getDynamicAssetList.php
+
+*.ppk

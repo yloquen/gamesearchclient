@@ -4,19 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: {
         app: path.join(__dirname, 'src', 'index.tsx')
     },
     target: 'web',
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
-    },
-    devtool: 'source-map',
-    devServer: {
-        static: './dist',
-        historyApiFallback: true,
-        hot: true
     },
     module: {
         rules:

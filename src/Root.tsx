@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Main from "./Main";
 import {SearchResults} from "./components/SearchResults";
 import React from "react";
+import {Favorites} from "./components/Favorites";
 
 const themeState = { winBgColor:"#f0f" };
 
@@ -17,6 +18,7 @@ export default () =>
                 <Routes>
                     <Route path="/" element={<Main/>}>
                         <Route path="/search" element={<SearchResults/>}/>
+                        <Route path="/favorites" element={<Favorites/>}/>
                     </Route>
                 </Routes>
             </BrowserRouter>

@@ -6,10 +6,7 @@
   width: 96%
   aspect-ratio: 4.5
 
-.result_container .fav_but
-  visibility: hidden
-
-.result_container:hover .fav_but
+.result_container .fav_but_false, .result_container .fav_but_true
   position: absolute
   height: 18%
   aspect-ratio: 1
@@ -17,7 +14,18 @@
   right: 0
   top: 0
   cursor: pointer
+
+.result_container .fav_but_false
+  visibility: hidden
+
+.result_container .fav_but_true
   visibility: visible
+
+.result_container:hover .fav_but_false
+  visibility: visible
+
+.fav_but_false:hover, .fav_but_true:hover
+  transform: scale(1.25, 1.25)
 
 
 .result_image
